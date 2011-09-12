@@ -46,14 +46,38 @@ class __TwigTemplate_b8e67a59522828b94ee97fb87d65b6b2 extends Twig_Template
     <table class=\"records_list\">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Nationalite</th>
-                <th>Paysresidence</th>
-                <th>Gsm</th>
-                <th>Email</th>
+                <th>";
+        // line 10
+        echo $this->env->getExtension('output')->pagerSort("Id", "c.id");
+        echo "</th>
+                <th>";
+        // line 11
+        echo $this->env->getExtension('output')->pagerSort("Titre", "c.titre");
+        echo "</th>
+                <th>";
+        // line 12
+        echo $this->env->getExtension('output')->pagerSort("Nom", "c.nom");
+        echo "</th>
+                <th>";
+        // line 13
+        echo $this->env->getExtension('output')->pagerSort("Prenom", "c.prenom");
+        echo "</th>
+                <th>";
+        // line 14
+        echo $this->env->getExtension('output')->pagerSort("Nationalite", "c.nationalite");
+        echo "</th>
+                <th>";
+        // line 15
+        echo $this->env->getExtension('output')->pagerSort("Paysresidence", "c.paysResidence");
+        echo "</th>
+                <th>";
+        // line 16
+        echo $this->env->getExtension('output')->pagerSort("Gsm", "c.gsm");
+        echo "</th>
+                <th>";
+        // line 17
+        echo $this->env->getExtension('output')->pagerSort("Email", "c.email");
+        echo "</th>
                 <th>Actions</th>
             </tr>
         </thead>

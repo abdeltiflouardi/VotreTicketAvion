@@ -7,14 +7,14 @@
     <table class="records_list">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Nationalite</th>
-                <th>Paysresidence</th>
-                <th>Gsm</th>
-                <th>Email</th>
+                <th>{{ pager_sort('Id', 'c.id')|raw }}</th>
+                <th>{{ pager_sort('Titre', 'c.titre')|raw }}</th>
+                <th>{{ pager_sort('Nom', 'c.nom')|raw }}</th>
+                <th>{{ pager_sort('Prenom', 'c.prenom')|raw }}</th>
+                <th>{{ pager_sort('Nationalite', 'c.nationalite')|raw }}</th>
+                <th>{{ pager_sort('Paysresidence', 'c.paysResidence')|raw }}</th>
+                <th>{{ pager_sort('Gsm', 'c.gsm')|raw }}</th>
+                <th>{{ pager_sort('Email', 'c.email')|raw }}</th>
                 <th>Actions</th>
             </tr>
         </thead>

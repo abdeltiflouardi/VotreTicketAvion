@@ -46,8 +46,14 @@ class __TwigTemplate_cd9f5e8b01e03af82f4ddc659743d8f2 extends Twig_Template
 <table class=\"records_list\">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Date</th>
+            <th>";
+        // line 10
+        echo $this->env->getExtension('output')->pagerSort("Id", "r.id");
+        echo "</th>
+            <th>";
+        // line 11
+        echo $this->env->getExtension('output')->pagerSort("Date", "r.date");
+        echo "</th>
             <th>Actions</th>
         </tr>
     </thead>

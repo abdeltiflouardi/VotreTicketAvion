@@ -46,12 +46,30 @@ class __TwigTemplate_ab28cf9bda7acab05a50fc1c88310b46 extends Twig_Template
 <table class=\"records_list\">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Datedepart</th>
-            <th>Datearive</th>
-            <th>Heuredepart</th>
-            <th>Heurearivee</th>
-            <th>Active</th>
+            <th>";
+        // line 10
+        echo $this->env->getExtension('output')->pagerSort("Id", "v.id");
+        echo "</th>
+            <th>";
+        // line 11
+        echo $this->env->getExtension('output')->pagerSort("Datedepart", "v.dateDepart");
+        echo "</th>
+            <th>";
+        // line 12
+        echo $this->env->getExtension('output')->pagerSort("Datearive", "v.dateArive");
+        echo "</th>
+            <th>";
+        // line 13
+        echo $this->env->getExtension('output')->pagerSort("Heuredepart", "v.heureDepart");
+        echo "</th>
+            <th>";
+        // line 14
+        echo $this->env->getExtension('output')->pagerSort("Heurearivee", "v.heureArivee");
+        echo "</th>
+            <th>";
+        // line 15
+        echo $this->env->getExtension('output')->pagerSort("Active", "v.active");
+        echo "</th>
             <th>Actions</th>
         </tr>
     </thead>

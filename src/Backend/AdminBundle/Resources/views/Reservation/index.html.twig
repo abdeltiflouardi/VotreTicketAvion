@@ -7,8 +7,8 @@
 <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Date</th>
+            <th>{{ pager_sort('Id', 'r.id')|raw }}</th>
+            <th>{{ pager_sort('Date', 'r.date')|raw }}</th>
             <th>Actions</th>
         </tr>
     </thead>

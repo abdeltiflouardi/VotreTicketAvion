@@ -7,12 +7,12 @@
 <table class="records_list">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Datedepart</th>
-            <th>Datearive</th>
-            <th>Heuredepart</th>
-            <th>Heurearivee</th>
-            <th>Active</th>
+            <th>{{ pager_sort('Id', 'v.id')|raw }}</th>
+            <th>{{ pager_sort('Datedepart', 'v.dateDepart')|raw }}</th>
+            <th>{{ pager_sort('Datearive', 'v.dateArive')|raw }}</th>
+            <th>{{ pager_sort('Heuredepart', 'v.heureDepart')|raw }}</th>
+            <th>{{ pager_sort('Heurearivee', 'v.heureArivee')|raw }}</th>
+            <th>{{ pager_sort('Active', 'v.active')|raw }}</th>
             <th>Actions</th>
         </tr>
     </thead>
