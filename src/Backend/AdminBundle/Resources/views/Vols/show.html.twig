@@ -1,0 +1,49 @@
+<h1>Vols</h1>
+
+<table class="record_properties">
+    <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Datedepart</th>
+            <td>{{ entity.dateDepart|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Datearive</th>
+            <td>{{ entity.dateArive|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Heuredepart</th>
+            <td>{{ entity.heureDepart }}</td>
+        </tr>
+        <tr>
+            <th>Heurearivee</th>
+            <td>{{ entity.heureArivee }}</td>
+        </tr>
+        <tr>
+            <th>Active</th>
+            <td>{{ entity.active }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('vols') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('vols_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('vols_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>

@@ -1,0 +1,30 @@
+reservation:
+    pattern:  /
+    defaults: { _controller: "BackendCoreBundle:Reservation:index" }
+
+reservation_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackendCoreBundle:Reservation:show" }
+
+reservation_new:
+    pattern:  /new
+    defaults: { _controller: "BackendCoreBundle:Reservation:new" }
+
+reservation_create:
+    pattern:  /create
+    defaults: { _controller: "BackendCoreBundle:Reservation:create" }
+    requirements: { _method: post }
+
+reservation_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackendCoreBundle:Reservation:edit" }
+
+reservation_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackendCoreBundle:Reservation:update" }
+    requirements: { _method: post }
+
+reservation_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackendCoreBundle:Reservation:delete" }
+    requirements: { _method: post }

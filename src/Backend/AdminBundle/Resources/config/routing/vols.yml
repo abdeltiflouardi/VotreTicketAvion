@@ -1,0 +1,30 @@
+vols:
+    pattern:  /
+    defaults: { _controller: "BackendCoreBundle:Vols:index" }
+
+vols_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackendCoreBundle:Vols:show" }
+
+vols_new:
+    pattern:  /new
+    defaults: { _controller: "BackendCoreBundle:Vols:new" }
+
+vols_create:
+    pattern:  /create
+    defaults: { _controller: "BackendCoreBundle:Vols:create" }
+    requirements: { _method: post }
+
+vols_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackendCoreBundle:Vols:edit" }
+
+vols_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackendCoreBundle:Vols:update" }
+    requirements: { _method: post }
+
+vols_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackendCoreBundle:Vols:delete" }
+    requirements: { _method: post }

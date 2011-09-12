@@ -1,0 +1,43 @@
+{% extends 'BackendAdminBundle::layout.html.twig' %}
+
+{% block content %}
+<h1>Airoport list</h1>
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>{{ pager_sort('Id', 'a.id')|raw }}</th>
+            <th>{{ pager_sort('Airoport', 'a.aeroport')|raw }}</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in pager %}
+        <tr>
+            <td><a href="{{ path('airoport_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.aeroport }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('airoport_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('airoport_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<p>{{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }}</p>
+
+<ul>
+    <li>
+        <a href="{{ path('airoport_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+{% endblock %}

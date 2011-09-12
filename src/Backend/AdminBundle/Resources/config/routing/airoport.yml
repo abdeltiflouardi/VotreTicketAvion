@@ -1,0 +1,30 @@
+airoport:
+    pattern:  /
+    defaults: { _controller: "BackendAdminBundle:Airoport:index" }
+
+airoport_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BackendAdminBundle:Airoport:show" }
+
+airoport_new:
+    pattern:  /new
+    defaults: { _controller: "BackendAdminBundle:Airoport:new" }
+
+airoport_create:
+    pattern:  /create
+    defaults: { _controller: "BackendAdminBundle:Airoport:create" }
+    requirements: { _method: post }
+
+airoport_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BackendAdminBundle:Airoport:edit" }
+
+airoport_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BackendAdminBundle:Airoport:update" }
+    requirements: { _method: post }
+
+airoport_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BackendAdminBundle:Airoport:delete" }
+    requirements: { _method: post }
