@@ -41,7 +41,7 @@ class VolsController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BackendCoreBundle:Vols:show.html.twig', array(
+        return $this->render('BackendAdminBundle:Vols:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
 
@@ -57,7 +57,7 @@ class VolsController extends Controller
         $entity = new Vols();
         $form   = $this->createForm(new VolsType(), $entity);
 
-        return $this->render('BackendCoreBundle:Vols:new.html.twig', array(
+        return $this->render('BackendAdminBundle:Vols:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView()
         ));
@@ -106,7 +106,7 @@ class VolsController extends Controller
         $editForm = $this->createForm(new VolsType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BackendCoreBundle:Vols:edit.html.twig', array(
+        return $this->render('BackendAdminBundle:Vols:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

@@ -199,37 +199,37 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getvolsRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Vols:index',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/',  ),));
     }
 
     private function getvols_showRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:show',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
     }
 
     private function getvols_newRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Vols:new',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/new',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/new',  ),));
     }
 
     private function getvols_createRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Vols:create',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/create',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::createAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/create',  ),));
     }
 
     private function getvols_editRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:edit',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
     }
 
     private function getvols_updateRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:update',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::updateAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
     }
 
     private function getvols_deleteRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:delete',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
     }
 
     private function getairoportRouteInfo()

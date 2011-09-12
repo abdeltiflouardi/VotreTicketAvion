@@ -54,6 +54,12 @@ class BackendCoreBundleEntityAeroportProxy extends \Backend\CoreBundle\Entity\Ae
         return parent::getAeroport();
     }
 
+    public function __toString()
+    {
+        $this->__load();
+        return parent::__toString();
+    }
+
 
     public function __sleep()
     {

@@ -1,26 +1,38 @@
+{% extends 'BackendAdminBundle::layout.html.twig' %}
+
+{% block content %}
+
 <h1>Vols</h1>
 
 <table class="record_properties">
     <tbody>
+        <tr>
+            <th>Aeroport départ</th>
+            <td>{{ entity.aeroportDepart }}</td>
+        </tr>
+        <tr>
+            <th>Aeroport arrivé</th>
+            <td>{{ entity.aeroportArrivee }}</td>
+        </tr>        
         <tr>
             <th>Id</th>
             <td>{{ entity.id }}</td>
         </tr>
         <tr>
             <th>Datedepart</th>
-            <td>{{ entity.dateDepart|date('Y-m-d H:i:s') }}</td>
+            <td>{{ entity.dateDepart|date('Y-m-d') }}</td>
         </tr>
         <tr>
             <th>Datearive</th>
-            <td>{{ entity.dateArive|date('Y-m-d H:i:s') }}</td>
+            <td>{{ entity.dateArive|date('Y-m-d') }}</td>
         </tr>
         <tr>
             <th>Heuredepart</th>
-            <td>{{ entity.heureDepart }}</td>
+            <td>{{ entity.heureDepart|date('H:i:s') }}</td>
         </tr>
         <tr>
             <th>Heurearivee</th>
-            <td>{{ entity.heureArivee }}</td>
+            <td>{{ entity.heureArivee|date('H:i:s') }}</td>
         </tr>
         <tr>
             <th>Active</th>
@@ -47,3 +59,4 @@
         </form>
     </li>
 </ul>
+{% endblock %}

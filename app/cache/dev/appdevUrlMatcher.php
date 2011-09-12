@@ -183,17 +183,17 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     if (substr($pathinfo, -1) !== '/') {
                         return $this->redirect($pathinfo.'/', 'vols');
                     }
-                    return array (  '_controller' => 'BackendCoreBundle:Vols:index',  '_route' => 'vols',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::indexAction',  '_route' => 'vols',);
                 }
 
                 // vols_show
                 if (preg_match('#^/admin/vols/(?P<id>[^/]+?)/show$#x', $pathinfo, $matches)) {
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:show',)), array('_route' => 'vols_show'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::showAction',)), array('_route' => 'vols_show'));
                 }
 
                 // vols_new
                 if ($pathinfo === '/admin/vols/new') {
-                    return array (  '_controller' => 'BackendCoreBundle:Vols:new',  '_route' => 'vols_new',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::newAction',  '_route' => 'vols_new',);
                 }
 
                 // vols_create
@@ -202,13 +202,13 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_vols_create;
                     }
-                    return array (  '_controller' => 'BackendCoreBundle:Vols:create',  '_route' => 'vols_create',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::createAction',  '_route' => 'vols_create',);
                 }
                 not_vols_create:
 
                 // vols_edit
                 if (preg_match('#^/admin/vols/(?P<id>[^/]+?)/edit$#x', $pathinfo, $matches)) {
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:edit',)), array('_route' => 'vols_edit'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::editAction',)), array('_route' => 'vols_edit'));
                 }
 
                 // vols_update
@@ -217,7 +217,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_vols_update;
                     }
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:update',)), array('_route' => 'vols_update'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::updateAction',)), array('_route' => 'vols_update'));
                 }
                 not_vols_update:
 
@@ -227,7 +227,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_vols_delete;
                     }
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:delete',)), array('_route' => 'vols_delete'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::deleteAction',)), array('_route' => 'vols_delete'));
                 }
                 not_vols_delete:
 

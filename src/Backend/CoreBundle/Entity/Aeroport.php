@@ -59,4 +59,8 @@ class Aeroport
     {
         return $this->aeroport;
     }
+    
+    public function __toString() {
+        return $this->getAeroport();
+    }
 }

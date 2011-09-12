@@ -2,24 +2,52 @@
 
 {% block content %}
 <div id="content">
-    <h1>Vols</h1>
-    
-    <a href="{{ path('BackendAdminBundle_vols_new') }}">{{ 'New'|trans }}</a>
-    
-    <table>
+<h1>Vols list</h1>
+
+<table class="records_list">
+    <thead>
         <tr>
-            <th>#</th>
-            <th>{{ pager_sort('Id', 'v.id')|raw }}</th>
+            <th>Id</th>
+            <th>Datedepart</th>
+            <th>Datearive</th>
+            <th>Heuredepart</th>
+            <th>Heurearivee</th>
+            <th>Active</th>
+            <th>Actions</th>
         </tr>
-    
-        {% for vols in pager %}
+    </thead>
+    <tbody>
+    {% for entity in pager %}
         <tr>
-            <td>{{ vols.id }}</td>
-            <td>{{ vols.id }}</td>
+            <td><a href="{{ path('vols_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.dateDepart|date('Y-m-d') }}</td>
+            <td>{{ entity.dateArive|date('Y-m-d') }}</td>
+            <td>{{ entity.heureDepart|date('H:i:s') }}</td>
+            <td>{{ entity.heureArivee|date('H:i:s') }}</td>
+            <td>{{ entity.active }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('vols_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('vols_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
         </tr>
-        {% endfor %}
-    </table>
+    {% endfor %}
+    </tbody>
+</table>
+<p>{{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }}</p>
+<ul>
+    <li>
+        <a href="{{ path('vols_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
     
-    {{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }}     
+        
 </div>
 {% endblock %}
