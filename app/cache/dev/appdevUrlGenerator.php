@@ -164,37 +164,37 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getclientRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Client:index',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/',  ),));
     }
 
     private function getclient_showRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:show',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
     private function getclient_newRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Client:new',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/new',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/new',  ),));
     }
 
     private function getclient_createRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Client:create',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/create',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::createAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/create',  ),));
     }
 
     private function getclient_editRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:edit',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
     private function getclient_updateRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:update',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::updateAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
     private function getclient_deleteRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:delete',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
     private function getvolsRouteInfo()

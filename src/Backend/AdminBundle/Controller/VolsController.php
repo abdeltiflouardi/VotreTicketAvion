@@ -83,7 +83,7 @@ class VolsController extends Controller
             
         }
 
-        return $this->render('BackendCoreBundle:Vols:new.html.twig', array(
+        return $this->render('BackendAdminBundle:Vols:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView()
         ));
@@ -141,7 +141,7 @@ class VolsController extends Controller
             return $this->redirect($this->generateUrl('vols_edit', array('id' => $id)));
         }
 
-        return $this->render('BackendCoreBundle:Vols:edit.html.twig', array(
+        return $this->render('BackendAdminBundle:Vols:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

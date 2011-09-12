@@ -127,17 +127,17 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     if (substr($pathinfo, -1) !== '/') {
                         return $this->redirect($pathinfo.'/', 'client');
                     }
-                    return array (  '_controller' => 'BackendCoreBundle:Client:index',  '_route' => 'client',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::indexAction',  '_route' => 'client',);
                 }
 
                 // client_show
                 if (preg_match('#^/admin/client/(?P<id>[^/]+?)/show$#x', $pathinfo, $matches)) {
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:show',)), array('_route' => 'client_show'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::showAction',)), array('_route' => 'client_show'));
                 }
 
                 // client_new
                 if ($pathinfo === '/admin/client/new') {
-                    return array (  '_controller' => 'BackendCoreBundle:Client:new',  '_route' => 'client_new',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::newAction',  '_route' => 'client_new',);
                 }
 
                 // client_create
@@ -146,13 +146,13 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_client_create;
                     }
-                    return array (  '_controller' => 'BackendCoreBundle:Client:create',  '_route' => 'client_create',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::createAction',  '_route' => 'client_create',);
                 }
                 not_client_create:
 
                 // client_edit
                 if (preg_match('#^/admin/client/(?P<id>[^/]+?)/edit$#x', $pathinfo, $matches)) {
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:edit',)), array('_route' => 'client_edit'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::editAction',)), array('_route' => 'client_edit'));
                 }
 
                 // client_update
@@ -161,7 +161,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_client_update;
                     }
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:update',)), array('_route' => 'client_update'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::updateAction',)), array('_route' => 'client_update'));
                 }
                 not_client_update:
 
@@ -171,7 +171,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_client_delete;
                     }
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:delete',)), array('_route' => 'client_delete'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::deleteAction',)), array('_route' => 'client_delete'));
                 }
                 not_client_delete:
 

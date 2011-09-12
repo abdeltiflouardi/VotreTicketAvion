@@ -2,24 +2,54 @@
 
 {% block content %}
 <div id="content">
-    <h1>Client</h1>
-    
-    <a href="{{ path('BackendAdminBundle_client_new') }}">{{ 'New'|trans }}</a>
-    
-    <table>
-        <tr>
-            <th>#</th>
-            <th>{{ pager_sort('Id', 'c.id')|raw }}</th>
-        </tr>
-    
-        {% for client in pager %}
-        <tr>
-            <td>{{ client.id }}</td>
-            <td>{{ client.id }}</td>
-        </tr>
+    <h1>Client list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Nationalite</th>
+                <th>Paysresidence</th>
+                <th>Gsm</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in pager %}
+            <tr>
+                <td><a href="{{ path('client_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.titre }}</td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenom }}</td>
+                <td>{{ entity.nationalite }}</td>
+                <td>{{ entity.paysResidence }}</td>
+                <td>{{ entity.gsm }}</td>
+                <td>{{ entity.email }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('client_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('client_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
         {% endfor %}
+        </tbody>
     </table>
-    
-    {{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }}    
+    <p>{{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }} </p>
+    <ul>
+        <li>
+            <a href="{{ path('client_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
 </div>
 {% endblock %}

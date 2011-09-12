@@ -41,52 +41,103 @@ class __TwigTemplate_b8e67a59522828b94ee97fb87d65b6b2 extends Twig_Template
     {
         // line 4
         echo "<div id=\"content\">
-    <h1>Client</h1>
-    
-    <a href=\"";
-        // line 7
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("BackendAdminBundle_client_new"), "html");
-        echo "\">";
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("New"), "html");
-        echo "</a>
-    
-    <table>
-        <tr>
-            <th>#</th>
-            <th>";
-        // line 12
-        echo $this->env->getExtension('output')->pagerSort("Id", "c.id");
-        echo "</th>
-        </tr>
-    
+    <h1>Client list</h1>
+
+    <table class=\"records_list\">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Nationalite</th>
+                <th>Paysresidence</th>
+                <th>Gsm</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
         ";
-        // line 15
+        // line 22
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, 'pager'));
-        foreach ($context['_seq'] as $context['_key'] => $context['client']) {
-            // line 16
-            echo "        <tr>
-            <td>";
-            // line 17
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'client'), "id", array(), "any", false), "html");
+        foreach ($context['_seq'] as $context['_key'] => $context['entity']) {
+            // line 23
+            echo "            <tr>
+                <td><a href=\"";
+            // line 24
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("client_show", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false), "html");
+            echo "</a></td>
+                <td>";
+            // line 25
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "titre", array(), "any", false), "html");
             echo "</td>
-            <td>";
-            // line 18
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'client'), "id", array(), "any", false), "html");
+                <td>";
+            // line 26
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "nom", array(), "any", false), "html");
             echo "</td>
-        </tr>
+                <td>";
+            // line 27
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "prenom", array(), "any", false), "html");
+            echo "</td>
+                <td>";
+            // line 28
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "nationalite", array(), "any", false), "html");
+            echo "</td>
+                <td>";
+            // line 29
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "paysResidence", array(), "any", false), "html");
+            echo "</td>
+                <td>";
+            // line 30
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "gsm", array(), "any", false), "html");
+            echo "</td>
+                <td>";
+            // line 31
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "email", array(), "any", false), "html");
+            echo "</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href=\"";
+            // line 35
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("client_show", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">show</a>
+                        </li>
+                        <li>
+                            <a href=\"";
+            // line 38
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("client_edit", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
         ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['client'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entity'], $context['_parent'], $context['loop']);
         $context = array_merge($_parent, array_intersect_key($context, $_parent));
-        // line 21
-        echo "    </table>
-    
-    ";
-        // line 23
+        // line 44
+        echo "        </tbody>
+    </table>
+    <p>";
+        // line 46
         echo $this->env->getExtension('output')->pagerPagination($this->getContext($context, 'pager'), "BackendCoreBundle:Pager:sliding.html.twig");
-        echo "    
+        echo " </p>
+    <ul>
+        <li>
+            <a href=\"";
+        // line 49
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("client_new"), "html");
+        echo "\">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
 </div>
 ";
     }
