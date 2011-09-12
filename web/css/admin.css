@@ -1,0 +1,16 @@
+body {
+    width: 1021px;
+    margin: auto;
+}
+
+ul.menu li {
+    display: inline;
+}
+
+table {
+    width: 100%;
+}
+
+table, td , tr, th {
+    border: 1px solid #ccc;
+}

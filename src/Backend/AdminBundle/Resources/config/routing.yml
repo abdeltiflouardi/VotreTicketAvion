@@ -1,0 +1,44 @@
+BackendAdminBundle_homepage:
+    pattern:  /
+    defaults: { _controller: BackendAdminBundle:Default:index }
+
+#BackendAdminBundle Profile
+BackendAdminBundle_profile_index:
+    pattern:  /profile
+    defaults: { _controller: BackendAdminBundle:Profile:index }
+
+#BackendAdminBundle Client
+BackendAdminBundle_client_index:
+    pattern:  /client
+    defaults: { _controller: BackendAdminBundle:Client:index }
+    
+BackendAdminBundle_client_new:
+    pattern:  /client/new
+    defaults: { _controller: BackendAdminBundle:Client:new }    
+
+#BackendAdminBundle Reservation
+BackendAdminBundle_reservation_index:
+    pattern:  /reservation
+    defaults: { _controller: BackendAdminBundle:Reservation:index }
+    
+BackendAdminBundle_reservation_new:
+    pattern:  /reservation/new
+    defaults: { _controller: BackendAdminBundle:Reservation:new }      
+    
+#BackendAdminBundle Vols
+BackendAdminBundle_vols_index:
+    pattern:  /vols
+    defaults: { _controller: BackendAdminBundle:Vols:index }
+
+BackendAdminBundle_vols_new:
+    pattern:  /vols/new
+    defaults: { _controller: BackendAdminBundle:Vols:new } 
+
+#BackendAdminBundle Airoport
+BackendAdminBundle_airoport_index:
+    pattern:  /airoport
+    defaults: { _controller: BackendAdminBundle:Airoport:index }
+    
+BackendAdminBundle_airoport_new:
+    pattern:  /airoport/new
+    defaults: { _controller: BackendAdminBundle:Airoport:new } 

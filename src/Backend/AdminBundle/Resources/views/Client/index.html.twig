@@ -1,0 +1,25 @@
+{% extends 'BackendAdminBundle::layout.html.twig' %}
+
+{% block content %}
+<div id="content">
+    <h1>Client</h1>
+    
+    <a href="{{ path('BackendAdminBundle_client_new') }}">{{ 'New'|trans }}</a>
+    
+    <table>
+        <tr>
+            <th>#</th>
+            <th>{{ pager_sort('Id', 'c.id')|raw }}</th>
+        </tr>
+    
+        {% for client in pager %}
+        <tr>
+            <td>{{ client.id }}</td>
+            <td>{{ client.id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    {{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }}    
+</div>
+{% endblock %}

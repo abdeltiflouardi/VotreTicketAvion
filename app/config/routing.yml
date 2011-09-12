@@ -1,0 +1,18 @@
+FrontendWebBundle:
+    resource: "@FrontendWebBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BackendAdminBundle:
+    resource: "@BackendAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+# Internal routing configuration to handle ESI
+#_internal:
+#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#   prefix:   /_internal
+
+login:
+    pattern:   /admin/login
+    defaults:  { _controller: BackendAdminBundle:Security:login }
+login_check:
+    pattern:   /admin/login_check

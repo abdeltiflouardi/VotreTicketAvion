@@ -1,0 +1,25 @@
+{% extends 'BackendAdminBundle::layout.html.twig' %}
+
+{% block content %}
+<div id="content">
+    <h1>Vols</h1>
+    
+    <a href="{{ path('BackendAdminBundle_vols_new') }}">{{ 'New'|trans }}</a>
+    
+    <table>
+        <tr>
+            <th>#</th>
+            <th>{{ pager_sort('Id', 'v.id')|raw }}</th>
+        </tr>
+    
+        {% for vols in pager %}
+        <tr>
+            <td>{{ vols.id }}</td>
+            <td>{{ vols.id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    {{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }}     
+</div>
+{% endblock %}

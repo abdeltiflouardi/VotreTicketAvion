@@ -1,0 +1,43 @@
+{% if pager.haveToPaginate %}
+    {% if pager.currentPage != 1 %}
+        <span class="first">
+        	<a href="{{ path ~ 'page=1' }}">&laquo;{{ 'First'|trans }}</a>
+        </span>
+    {% endif %}
+
+    {% if pager.hasPreviousPage %}
+        <span class="previous">
+        	<a href="{{ path ~ 'page=' ~ pager.previousPage }}">{{ 'Previous'|trans }}</a>
+        </span>
+    {% endif %}
+
+    {% for page in range %}
+        {% if page != pager.currentPage %}
+            <span class="page">
+            	<a href="{{ path ~ 'page=' ~ page }}">{{ page }}</a>
+            </span>
+        {% else %}
+            <span class="current">{{ page }}</span>
+        {% endif %}
+
+    {% endfor %}
+
+    {% if pager.hasNextPage %}
+        <span class="next">
+        	<a href="{{ path ~ 'page=' ~ pager.nextPage }}">{{ 'Next'|trans }}</a>
+        </span>
+    {% endif %}
+
+    {% if pager.nbPages != pager.currentPage %}
+        <span class="last">
+        	<a href="{{ path ~ 'page=' ~ pager.nbPages }}">{{ 'Last'|trans }}&raquo;</a>
+        </span>
+    {% endif %}
+    ({{ pager.currentPage ~ '/' ~ pager.nbPages }})
+       |   
+    {{ 'Per page'|trans }}:
+    <a href="{{ per_page_path(10) }}">10</a>,
+    <a href="{{ per_page_path(20) }}">20</a>,
+    <a href="{{ per_page_path(50) }}">50</a>,
+    <a href="{{ per_page_path(100) }}">100</a>           
+{% endif %}

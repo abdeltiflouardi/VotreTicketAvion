@@ -1,0 +1,9 @@
+parameters:
+  backend_core.output.class: Backend\CoreBundle\Twig\OutputExtension
+
+services:
+    backend_core.output:
+        class: %backend_core.output.class%
+        arguments: ["@service_container"]
+        tags:
+            - { name: twig.extension }      

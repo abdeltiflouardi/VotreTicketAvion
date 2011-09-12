@@ -1,0 +1,41 @@
+{% extends "FrontendWebBundle::layout.html.twig" %}
+
+{% block content %}    
+<form action="" method="post">
+    <div class="airport-infos">
+        {{ departure.currentPageResults[0].aeroportDepart.aeroport }}
+        -
+        {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
+    </div>
+    <div class="list-results">
+        {% for vols in departure %}
+            <div class="item">
+                <input type="radio" name="vols[departure]" value="{{ vols.id }}" />
+                <ul>
+                    <li>{{ vols.dateDepart|date('d/m/Y') }}</li>
+                    <li>{{ vols.tarifs[0].tarifAdulte }}</li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="airport-infos">
+        {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
+        -
+        {{ departure.currentPageResults[0].aeroportDepart.aeroport }}
+    </div>
+    <div class="list-results">
+        {% for vols in arrival %}
+            <div class="item">
+                <input type="radio" name="vols[return]" value="{{ vols.id }}" />
+                <ul>
+                    <li>{{ vols.dateDepart|date('d/m/Y') }}</li>
+                    <li>{{ vols.tarifs[0].tarifAdulte }}</li>
+                </ul>
+            </div>
+        {% endfor %}
+    </div>
+        
+        <input type="submit" value="Save" />
+</form>
+{% endblock %}

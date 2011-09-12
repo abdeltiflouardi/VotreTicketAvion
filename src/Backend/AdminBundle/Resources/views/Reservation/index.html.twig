@@ -1,0 +1,25 @@
+{% extends 'BackendAdminBundle::layout.html.twig' %}
+
+{% block content %}
+<div id="content">
+    <h1>Reservation</h1>
+    
+    <a href="{{ path('BackendAdminBundle_reservation_new') }}">{{ 'New'|trans }}</a>
+    
+    <table>
+        <tr>
+            <th>#</th>
+            <th>{{ pager_sort('Id', 'r.id')|raw }}</th>
+        </tr>
+    
+        {% for reservation in pager %}
+        <tr>
+            <td>{{ reservation.id }}</td>
+            <td>{{ reservation.id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    {{ pager_pagination(pager, 'BackendCoreBundle:Pager:sliding.html.twig')|raw }}
+</div>
+{% endblock %}

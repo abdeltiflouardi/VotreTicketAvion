@@ -1,0 +1,13 @@
+{% extends "FrontendWebBundle::layout.html.twig" %}
+
+{% block content %}
+
+<fieldset>
+    <legend>Informations personnelles</legend>
+    <form action="{{ path('FrontendWebBundle_client_subscribe') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+
+        <input type="submit" />
+    </form>
+</fieldset>
+{% endblock %}

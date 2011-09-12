@@ -1,0 +1,7 @@
+parameters:
+  pager.range: 5
+
+services:
+#    backend_admin.example:
+#        class: %backend_admin.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
