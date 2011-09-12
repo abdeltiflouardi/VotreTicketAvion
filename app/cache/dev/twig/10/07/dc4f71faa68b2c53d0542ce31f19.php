@@ -41,7 +41,33 @@ class __TwigTemplate_1007dc4f71faa68b2c53d0542ce31f19 extends Twig_Template
     {
         // line 4
         echo "<div id=\"content\">
-    <h1>New reservation</h1>
+    <h1>Reservation creation</h1>
+
+    <form action=\"";
+        // line 7
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("reservation_create"), "html");
+        echo "\" method=\"post\" ";
+        echo $this->env->getExtension('form')->renderEnctype($this->getContext($context, 'form'));
+        echo ">
+        ";
+        // line 8
+        echo $this->env->getExtension('form')->renderWidget($this->getContext($context, 'form'));
+        echo "
+        <p>
+            <button type=\"submit\">Create</button>
+        </p>
+    </form>
+
+    <ul class=\"record_actions\">
+        <li>
+            <a href=\"";
+        // line 16
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("reservation"), "html");
+        echo "\">
+                Back to the list
+            </a>
+        </li>
+    </ul>
     
 </div>
 ";

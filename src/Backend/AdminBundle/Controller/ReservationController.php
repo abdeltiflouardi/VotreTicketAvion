@@ -41,7 +41,7 @@ class ReservationController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BackendCoreBundle:Reservation:show.html.twig', array(
+        return $this->render('BackendAdminBundle:Reservation:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
 
@@ -57,7 +57,7 @@ class ReservationController extends Controller
         $entity = new Reservation();
         $form   = $this->createForm(new ReservationType(), $entity);
 
-        return $this->render('BackendCoreBundle:Reservation:new.html.twig', array(
+        return $this->render('BackendAdminBundle:Reservation:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView()
         ));
@@ -83,7 +83,7 @@ class ReservationController extends Controller
             
         }
 
-        return $this->render('BackendCoreBundle:Reservation:new.html.twig', array(
+        return $this->render('BackendAdminBundle:Reservation:new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView()
         ));
@@ -106,7 +106,7 @@ class ReservationController extends Controller
         $editForm = $this->createForm(new ReservationType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BackendCoreBundle:Reservation:edit.html.twig', array(
+        return $this->render('BackendAdminBundle:Reservation:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -141,7 +141,7 @@ class ReservationController extends Controller
             return $this->redirect($this->generateUrl('reservation_edit', array('id' => $id)));
         }
 
-        return $this->render('BackendCoreBundle:Reservation:edit.html.twig', array(
+        return $this->render('BackendAdminBundle:Reservation:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

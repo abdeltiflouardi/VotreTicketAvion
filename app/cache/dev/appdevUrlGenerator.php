@@ -269,37 +269,37 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
 
     private function getreservationRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Reservation:index',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/',  ),));
     }
 
     private function getreservation_showRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:show',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
     }
 
     private function getreservation_newRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Reservation:new',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/new',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/new',  ),));
     }
 
     private function getreservation_createRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'BackendCoreBundle:Reservation:create',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/create',  ),));
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::createAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/create',  ),));
     }
 
     private function getreservation_editRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:edit',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
     }
 
     private function getreservation_updateRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:update',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::updateAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
     }
 
     private function getreservation_deleteRouteInfo()
     {
-        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:delete',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
     }
 
     private function getloginRouteInfo()

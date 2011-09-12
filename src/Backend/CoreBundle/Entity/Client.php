@@ -221,4 +221,8 @@ class Client
     {
         return $this->email;
     }
+    
+    public function __toString() {
+        return $this->getNom() . ' ' . $this->getPrenom();
+    }
 }

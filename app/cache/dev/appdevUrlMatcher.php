@@ -295,17 +295,17 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                     if (substr($pathinfo, -1) !== '/') {
                         return $this->redirect($pathinfo.'/', 'reservation');
                     }
-                    return array (  '_controller' => 'BackendCoreBundle:Reservation:index',  '_route' => 'reservation',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::indexAction',  '_route' => 'reservation',);
                 }
 
                 // reservation_show
                 if (preg_match('#^/admin/reservation/(?P<id>[^/]+?)/show$#x', $pathinfo, $matches)) {
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:show',)), array('_route' => 'reservation_show'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::showAction',)), array('_route' => 'reservation_show'));
                 }
 
                 // reservation_new
                 if ($pathinfo === '/admin/reservation/new') {
-                    return array (  '_controller' => 'BackendCoreBundle:Reservation:new',  '_route' => 'reservation_new',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::newAction',  '_route' => 'reservation_new',);
                 }
 
                 // reservation_create
@@ -314,13 +314,13 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_reservation_create;
                     }
-                    return array (  '_controller' => 'BackendCoreBundle:Reservation:create',  '_route' => 'reservation_create',);
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::createAction',  '_route' => 'reservation_create',);
                 }
                 not_reservation_create:
 
                 // reservation_edit
                 if (preg_match('#^/admin/reservation/(?P<id>[^/]+?)/edit$#x', $pathinfo, $matches)) {
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:edit',)), array('_route' => 'reservation_edit'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::editAction',)), array('_route' => 'reservation_edit'));
                 }
 
                 // reservation_update
@@ -329,7 +329,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_reservation_update;
                     }
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:update',)), array('_route' => 'reservation_update'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::updateAction',)), array('_route' => 'reservation_update'));
                 }
                 not_reservation_update:
 
@@ -339,7 +339,7 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                         $allow[] = 'POST';
                         goto not_reservation_delete;
                     }
-                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:delete',)), array('_route' => 'reservation_delete'));
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::deleteAction',)), array('_route' => 'reservation_delete'));
                 }
                 not_reservation_delete:
 

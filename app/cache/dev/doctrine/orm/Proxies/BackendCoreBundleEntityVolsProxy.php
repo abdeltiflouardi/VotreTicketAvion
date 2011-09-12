@@ -126,6 +126,12 @@ class BackendCoreBundleEntityVolsProxy extends \Backend\CoreBundle\Entity\Vols i
         return parent::getAeroportArrivee();
     }
 
+    public function __toString()
+    {
+        $this->__load();
+        return parent::__toString();
+    }
+
 
     public function __sleep()
     {

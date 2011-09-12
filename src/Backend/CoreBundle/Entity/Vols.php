@@ -227,4 +227,8 @@ class Vols
     {
         return $this->aeroportArrivee;
     }
+
+    public function __toString() {
+        return $this->getAeroportDepart() . ' >> ' . $this->getAeroportArrivee();
+    }    
 }

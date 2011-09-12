@@ -41,52 +41,75 @@ class __TwigTemplate_cd9f5e8b01e03af82f4ddc659743d8f2 extends Twig_Template
     {
         // line 4
         echo "<div id=\"content\">
-    <h1>Reservation</h1>
-    
-    <a href=\"";
-        // line 7
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("BackendAdminBundle_reservation_new"), "html");
-        echo "\">";
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("New"), "html");
-        echo "</a>
-    
-    <table>
+<h1>Reservation list</h1>
+
+<table class=\"records_list\">
+    <thead>
         <tr>
-            <th>#</th>
-            <th>";
-        // line 12
-        echo $this->env->getExtension('output')->pagerSort("Id", "r.id");
-        echo "</th>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Actions</th>
         </tr>
-    
-        ";
-        // line 15
+    </thead>
+    <tbody>
+    ";
+        // line 16
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, 'pager'));
-        foreach ($context['_seq'] as $context['_key'] => $context['reservation']) {
-            // line 16
-            echo "        <tr>
-            <td>";
+        foreach ($context['_seq'] as $context['_key'] => $context['entity']) {
             // line 17
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'reservation'), "id", array(), "any", false), "html");
-            echo "</td>
-            <td>";
+            echo "        <tr>
+            <td><a href=\"";
             // line 18
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'reservation'), "id", array(), "any", false), "html");
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("reservation_show", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false), "html");
+            echo "</a></td>
+            <td>";
+            // line 19
+            echo twig_escape_filter($this->env, twig_date_format_filter($this->getAttribute($this->getContext($context, 'entity'), "date", array(), "any", false), "Y-m-d H:i:s"), "html");
             echo "</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href=\"";
+            // line 23
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("reservation_show", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">show</a>
+                    </li>
+                    <li>
+                        <a href=\"";
+            // line 26
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("reservation_edit", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">edit</a>
+                    </li>
+                </ul>
+            </td>
         </tr>
-        ";
+    ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['reservation'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entity'], $context['_parent'], $context['loop']);
         $context = array_merge($_parent, array_intersect_key($context, $_parent));
-        // line 21
-        echo "    </table>
-    
-    ";
-        // line 23
+        // line 32
+        echo "    </tbody>
+</table>
+
+<p>";
+        // line 35
         echo $this->env->getExtension('output')->pagerPagination($this->getContext($context, 'pager'), "BackendCoreBundle:Pager:sliding.html.twig");
-        echo "
+        echo "</p>
+
+<ul>
+    <li>
+        <a href=\"";
+        // line 39
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("reservation_new"), "html");
+        echo "\">
+            Create a new entry
+        </a>
+    </li>
+</ul>
 </div>
 ";
     }
