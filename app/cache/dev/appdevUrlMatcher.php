@@ -121,44 +121,228 @@ class appdevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ProfileController::indexAction',  '_route' => 'BackendAdminBundle_profile_index',);
             }
 
-            // BackendAdminBundle_client_index
-            if ($pathinfo === '/admin/client') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::indexAction',  '_route' => 'BackendAdminBundle_client_index',);
+            if (0 === strpos($pathinfo, '/admin/client')) {
+                // client
+                if (rtrim($pathinfo, '/') === '/admin/client') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'client');
+                    }
+                    return array (  '_controller' => 'BackendCoreBundle:Client:index',  '_route' => 'client',);
+                }
+
+                // client_show
+                if (preg_match('#^/admin/client/(?P<id>[^/]+?)/show$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:show',)), array('_route' => 'client_show'));
+                }
+
+                // client_new
+                if ($pathinfo === '/admin/client/new') {
+                    return array (  '_controller' => 'BackendCoreBundle:Client:new',  '_route' => 'client_new',);
+                }
+
+                // client_create
+                if ($pathinfo === '/admin/client/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_client_create;
+                    }
+                    return array (  '_controller' => 'BackendCoreBundle:Client:create',  '_route' => 'client_create',);
+                }
+                not_client_create:
+
+                // client_edit
+                if (preg_match('#^/admin/client/(?P<id>[^/]+?)/edit$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:edit',)), array('_route' => 'client_edit'));
+                }
+
+                // client_update
+                if (preg_match('#^/admin/client/(?P<id>[^/]+?)/update$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_client_update;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:update',)), array('_route' => 'client_update'));
+                }
+                not_client_update:
+
+                // client_delete
+                if (preg_match('#^/admin/client/(?P<id>[^/]+?)/delete$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_client_delete;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Client:delete',)), array('_route' => 'client_delete'));
+                }
+                not_client_delete:
+
             }
 
-            // BackendAdminBundle_client_new
-            if ($pathinfo === '/admin/client/new') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::newAction',  '_route' => 'BackendAdminBundle_client_new',);
+            if (0 === strpos($pathinfo, '/admin/vols')) {
+                // vols
+                if (rtrim($pathinfo, '/') === '/admin/vols') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'vols');
+                    }
+                    return array (  '_controller' => 'BackendCoreBundle:Vols:index',  '_route' => 'vols',);
+                }
+
+                // vols_show
+                if (preg_match('#^/admin/vols/(?P<id>[^/]+?)/show$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:show',)), array('_route' => 'vols_show'));
+                }
+
+                // vols_new
+                if ($pathinfo === '/admin/vols/new') {
+                    return array (  '_controller' => 'BackendCoreBundle:Vols:new',  '_route' => 'vols_new',);
+                }
+
+                // vols_create
+                if ($pathinfo === '/admin/vols/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_vols_create;
+                    }
+                    return array (  '_controller' => 'BackendCoreBundle:Vols:create',  '_route' => 'vols_create',);
+                }
+                not_vols_create:
+
+                // vols_edit
+                if (preg_match('#^/admin/vols/(?P<id>[^/]+?)/edit$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:edit',)), array('_route' => 'vols_edit'));
+                }
+
+                // vols_update
+                if (preg_match('#^/admin/vols/(?P<id>[^/]+?)/update$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_vols_update;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:update',)), array('_route' => 'vols_update'));
+                }
+                not_vols_update:
+
+                // vols_delete
+                if (preg_match('#^/admin/vols/(?P<id>[^/]+?)/delete$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_vols_delete;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Vols:delete',)), array('_route' => 'vols_delete'));
+                }
+                not_vols_delete:
+
             }
 
-            // BackendAdminBundle_reservation_index
-            if ($pathinfo === '/admin/reservation') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::indexAction',  '_route' => 'BackendAdminBundle_reservation_index',);
+            if (0 === strpos($pathinfo, '/admin/airoport')) {
+                // airoport
+                if (rtrim($pathinfo, '/') === '/admin/airoport') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'airoport');
+                    }
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::indexAction',  '_route' => 'airoport',);
+                }
+
+                // airoport_show
+                if (preg_match('#^/admin/airoport/(?P<id>[^/]+?)/show$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::showAction',)), array('_route' => 'airoport_show'));
+                }
+
+                // airoport_new
+                if ($pathinfo === '/admin/airoport/new') {
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::newAction',  '_route' => 'airoport_new',);
+                }
+
+                // airoport_create
+                if ($pathinfo === '/admin/airoport/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_airoport_create;
+                    }
+                    return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::createAction',  '_route' => 'airoport_create',);
+                }
+                not_airoport_create:
+
+                // airoport_edit
+                if (preg_match('#^/admin/airoport/(?P<id>[^/]+?)/edit$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::editAction',)), array('_route' => 'airoport_edit'));
+                }
+
+                // airoport_update
+                if (preg_match('#^/admin/airoport/(?P<id>[^/]+?)/update$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_airoport_update;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::updateAction',)), array('_route' => 'airoport_update'));
+                }
+                not_airoport_update:
+
+                // airoport_delete
+                if (preg_match('#^/admin/airoport/(?P<id>[^/]+?)/delete$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_airoport_delete;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::deleteAction',)), array('_route' => 'airoport_delete'));
+                }
+                not_airoport_delete:
+
             }
 
-            // BackendAdminBundle_reservation_new
-            if ($pathinfo === '/admin/reservation/new') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::newAction',  '_route' => 'BackendAdminBundle_reservation_new',);
-            }
+            if (0 === strpos($pathinfo, '/admin/reservation')) {
+                // reservation
+                if (rtrim($pathinfo, '/') === '/admin/reservation') {
+                    if (substr($pathinfo, -1) !== '/') {
+                        return $this->redirect($pathinfo.'/', 'reservation');
+                    }
+                    return array (  '_controller' => 'BackendCoreBundle:Reservation:index',  '_route' => 'reservation',);
+                }
 
-            // BackendAdminBundle_vols_index
-            if ($pathinfo === '/admin/vols') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::indexAction',  '_route' => 'BackendAdminBundle_vols_index',);
-            }
+                // reservation_show
+                if (preg_match('#^/admin/reservation/(?P<id>[^/]+?)/show$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:show',)), array('_route' => 'reservation_show'));
+                }
 
-            // BackendAdminBundle_vols_new
-            if ($pathinfo === '/admin/vols/new') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::newAction',  '_route' => 'BackendAdminBundle_vols_new',);
-            }
+                // reservation_new
+                if ($pathinfo === '/admin/reservation/new') {
+                    return array (  '_controller' => 'BackendCoreBundle:Reservation:new',  '_route' => 'reservation_new',);
+                }
 
-            // BackendAdminBundle_airoport_index
-            if ($pathinfo === '/admin/airoport') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::indexAction',  '_route' => 'BackendAdminBundle_airoport_index',);
-            }
+                // reservation_create
+                if ($pathinfo === '/admin/reservation/create') {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_reservation_create;
+                    }
+                    return array (  '_controller' => 'BackendCoreBundle:Reservation:create',  '_route' => 'reservation_create',);
+                }
+                not_reservation_create:
 
-            // BackendAdminBundle_airoport_new
-            if ($pathinfo === '/admin/airoport/new') {
-                return array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::newAction',  '_route' => 'BackendAdminBundle_airoport_new',);
+                // reservation_edit
+                if (preg_match('#^/admin/reservation/(?P<id>[^/]+?)/edit$#x', $pathinfo, $matches)) {
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:edit',)), array('_route' => 'reservation_edit'));
+                }
+
+                // reservation_update
+                if (preg_match('#^/admin/reservation/(?P<id>[^/]+?)/update$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_reservation_update;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:update',)), array('_route' => 'reservation_update'));
+                }
+                not_reservation_update:
+
+                // reservation_delete
+                if (preg_match('#^/admin/reservation/(?P<id>[^/]+?)/delete$#x', $pathinfo, $matches)) {
+                    if ($this->context->getMethod() != 'POST') {
+                        $allow[] = 'POST';
+                        goto not_reservation_delete;
+                    }
+                    return array_merge($this->mergeDefaults($matches, array (  '_controller' => 'BackendCoreBundle:Reservation:delete',)), array('_route' => 'reservation_delete'));
+                }
+                not_reservation_delete:
+
             }
 
             // login

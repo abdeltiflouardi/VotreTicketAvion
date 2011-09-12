@@ -92,25 +92,25 @@ class __TwigTemplate_457b9c47896da219f8f627a81b0112d2 extends Twig_Template
         echo "</a></li>
                 <li><a href=\"";
         // line 19
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("BackendAdminBundle_reservation_index"), "html");
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("reservation"), "html");
         echo "\" class=\"button\">";
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Reservation"), "html");
         echo "</a></li>
                 <li><a href=\"";
         // line 20
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("BackendAdminBundle_client_index"), "html");
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("client"), "html");
         echo "\" class=\"button\">";
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Client"), "html");
         echo "</a></li>
                 <li><a href=\"";
         // line 21
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("BackendAdminBundle_vols_index"), "html");
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("vols"), "html");
         echo "\" class=\"button\">";
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Vols"), "html");
         echo "</a></li>
                 <li><a href=\"";
         // line 22
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("BackendAdminBundle_airoport_index"), "html");
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("airoport"), "html");
         echo "\" class=\"button\">";
         echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("Airoport"), "html");
         echo "</a></li>

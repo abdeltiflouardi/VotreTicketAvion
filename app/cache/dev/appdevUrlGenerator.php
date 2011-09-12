@@ -29,14 +29,34 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
        'FrontendWebBundle_client_subscribe_success' => true,
        'BackendAdminBundle_homepage' => true,
        'BackendAdminBundle_profile_index' => true,
-       'BackendAdminBundle_client_index' => true,
-       'BackendAdminBundle_client_new' => true,
-       'BackendAdminBundle_reservation_index' => true,
-       'BackendAdminBundle_reservation_new' => true,
-       'BackendAdminBundle_vols_index' => true,
-       'BackendAdminBundle_vols_new' => true,
-       'BackendAdminBundle_airoport_index' => true,
-       'BackendAdminBundle_airoport_new' => true,
+       'client' => true,
+       'client_show' => true,
+       'client_new' => true,
+       'client_create' => true,
+       'client_edit' => true,
+       'client_update' => true,
+       'client_delete' => true,
+       'vols' => true,
+       'vols_show' => true,
+       'vols_new' => true,
+       'vols_create' => true,
+       'vols_edit' => true,
+       'vols_update' => true,
+       'vols_delete' => true,
+       'airoport' => true,
+       'airoport_show' => true,
+       'airoport_new' => true,
+       'airoport_create' => true,
+       'airoport_edit' => true,
+       'airoport_update' => true,
+       'airoport_delete' => true,
+       'reservation' => true,
+       'reservation_show' => true,
+       'reservation_new' => true,
+       'reservation_create' => true,
+       'reservation_edit' => true,
+       'reservation_update' => true,
+       'reservation_delete' => true,
        'login' => true,
        'login_check' => true,
     );
@@ -142,44 +162,144 @@ class appdevUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerato
         return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ProfileController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/profile',  ),));
     }
 
-    private function getBackendAdminBundle_client_indexRouteInfo()
+    private function getclientRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Client:index',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/',  ),));
     }
 
-    private function getBackendAdminBundle_client_newRouteInfo()
+    private function getclient_showRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ClientController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/new',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:show',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
-    private function getBackendAdminBundle_reservation_indexRouteInfo()
+    private function getclient_newRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Client:new',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/new',  ),));
     }
 
-    private function getBackendAdminBundle_reservation_newRouteInfo()
+    private function getclient_createRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\ReservationController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/new',  ),));
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Client:create',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/client/create',  ),));
     }
 
-    private function getBackendAdminBundle_vols_indexRouteInfo()
+    private function getclient_editRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:edit',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
-    private function getBackendAdminBundle_vols_newRouteInfo()
+    private function getclient_updateRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\VolsController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/new',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:update',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
-    private function getBackendAdminBundle_airoport_indexRouteInfo()
+    private function getclient_deleteRouteInfo()
     {
-        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/airoport',  ),));
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Client:delete',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/client',  ),));
     }
 
-    private function getBackendAdminBundle_airoport_newRouteInfo()
+    private function getvolsRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Vols:index',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/',  ),));
+    }
+
+    private function getvols_showRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:show',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+    }
+
+    private function getvols_newRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Vols:new',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/new',  ),));
+    }
+
+    private function getvols_createRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Vols:create',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/vols/create',  ),));
+    }
+
+    private function getvols_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:edit',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+    }
+
+    private function getvols_updateRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:update',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+    }
+
+    private function getvols_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Vols:delete',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/vols',  ),));
+    }
+
+    private function getairoportRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/airoport/',  ),));
+    }
+
+    private function getairoport_showRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::showAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/airoport',  ),));
+    }
+
+    private function getairoport_newRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::newAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/airoport/new',  ),));
+    }
+
+    private function getairoport_createRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::createAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/airoport/create',  ),));
+    }
+
+    private function getairoport_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::editAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/airoport',  ),));
+    }
+
+    private function getairoport_updateRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::updateAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/airoport',  ),));
+    }
+
+    private function getairoport_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'Backend\\AdminBundle\\Controller\\AiroportController::deleteAction',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/airoport',  ),));
+    }
+
+    private function getreservationRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Reservation:index',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/',  ),));
+    }
+
+    private function getreservation_showRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:show',), array (), array (  0 =>   array (    0 => 'text',    1 => '/show',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+    }
+
+    private function getreservation_newRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Reservation:new',), array (), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/new',  ),));
+    }
+
+    private function getreservation_createRouteInfo()
+    {
+        return array(array (), array (  '_controller' => 'BackendCoreBundle:Reservation:create',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/admin/reservation/create',  ),));
+    }
+
+    private function getreservation_editRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:edit',), array (), array (  0 =>   array (    0 => 'text',    1 => '/edit',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+    }
+
+    private function getreservation_updateRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:update',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/update',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
+    }
+
+    private function getreservation_deleteRouteInfo()
+    {
+        return array(array (  0 => 'id',), array (  '_controller' => 'BackendCoreBundle:Reservation:delete',), array (  '_method' => 'post',), array (  0 =>   array (    0 => 'text',    1 => '/delete',  ),  1 =>   array (    0 => 'variable',    1 => '/',    2 => '[^/]+?',    3 => 'id',  ),  2 =>   array (    0 => 'text',    1 => '/admin/reservation',  ),));
     }
 
     private function getloginRouteInfo()

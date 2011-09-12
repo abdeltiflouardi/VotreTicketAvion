@@ -40,10 +40,33 @@ class __TwigTemplate_bdad9b62b3e55fcf60217eb12999da23 extends Twig_Template
     public function block_content($context, array $blocks = array())
     {
         // line 4
-        echo "<div id=\"content\">
-    <h1>New airoport</h1>
-    
-</div>
+        echo "<h1>Airoport creation</h1>
+
+<form action=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("airoport_create"), "html");
+        echo "\" method=\"post\" ";
+        echo $this->env->getExtension('form')->renderEnctype($this->getContext($context, 'form'));
+        echo ">
+    ";
+        // line 7
+        echo $this->env->getExtension('form')->renderWidget($this->getContext($context, 'form'));
+        echo "
+    <p>
+        <button type=\"submit\">Create</button>
+    </p>
+</form>
+
+<ul class=\"record_actions\">
+    <li>
+        <a href=\"";
+        // line 15
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("airoport"), "html");
+        echo "\">
+            Back to the list
+        </a>
+    </li>
+</ul>
 ";
     }
 

@@ -40,54 +40,81 @@ class __TwigTemplate_1d7d7f0eb3c6c456f791e4a1d79efd02 extends Twig_Template
     public function block_content($context, array $blocks = array())
     {
         // line 4
-        echo "<div id=\"content\">
-    <h1>Airoport</h1>
-    
-    <a href=\"";
-        // line 7
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("BackendAdminBundle_airoport_new"), "html");
-        echo "\">";
-        echo twig_escape_filter($this->env, $this->env->getExtension('translator')->trans("New"), "html");
-        echo "</a>
-    
-    <table>
+        echo "<h1>Airoport list</h1>
+
+<table class=\"records_list\">
+    <thead>
         <tr>
-            <th>#</th>
             <th>";
-        // line 12
+        // line 9
         echo $this->env->getExtension('output')->pagerSort("Id", "a.id");
         echo "</th>
+            <th>";
+        // line 10
+        echo $this->env->getExtension('output')->pagerSort("Airoport", "a.aeroport");
+        echo "</th>
+            <th>Actions</th>
         </tr>
-    
-        ";
+    </thead>
+    <tbody>
+    ";
         // line 15
         $context['_parent'] = (array) $context;
         $context['_seq'] = twig_ensure_traversable($this->getContext($context, 'pager'));
-        foreach ($context['_seq'] as $context['_key'] => $context['airoport']) {
+        foreach ($context['_seq'] as $context['_key'] => $context['entity']) {
             // line 16
             echo "        <tr>
-            <td>";
+            <td><a href=\"";
             // line 17
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'airoport'), "id", array(), "any", false), "html");
-            echo "</td>
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("airoport_show", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false), "html");
+            echo "</a></td>
             <td>";
             // line 18
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'airoport'), "id", array(), "any", false), "html");
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getContext($context, 'entity'), "aeroport", array(), "any", false), "html");
             echo "</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href=\"";
+            // line 22
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("airoport_show", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">show</a>
+                    </li>
+                    <li>
+                        <a href=\"";
+            // line 25
+            echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("airoport_edit", array("id" => $this->getAttribute($this->getContext($context, 'entity'), "id", array(), "any", false))), "html");
+            echo "\">edit</a>
+                    </li>
+                </ul>
+            </td>
         </tr>
-        ";
+    ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['airoport'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entity'], $context['_parent'], $context['loop']);
         $context = array_merge($_parent, array_intersect_key($context, $_parent));
-        // line 21
-        echo "    </table>
-    
-    ";
-        // line 23
+        // line 31
+        echo "    </tbody>
+</table>
+
+<p>";
+        // line 34
         echo $this->env->getExtension('output')->pagerPagination($this->getContext($context, 'pager'), "BackendCoreBundle:Pager:sliding.html.twig");
-        echo "      
-</div>
+        echo "</p>
+
+<ul>
+    <li>
+        <a href=\"";
+        // line 38
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("airoport_new"), "html");
+        echo "\">
+            Create a new entry
+        </a>
+    </li>
+</ul>
 ";
     }
 

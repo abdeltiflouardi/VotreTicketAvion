@@ -68,7 +68,7 @@ class BaseController extends Controller {
     public function pager($entity, $options = array()) {
         // Paginate options
         $_default_options = array(
-            'maxPerPage' => 10,
+            'maxPerPage' => 1,
         );
 
         $options = array_merge($_default_options, $options);
