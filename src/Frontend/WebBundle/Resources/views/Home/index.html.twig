@@ -20,9 +20,9 @@
                         </div>
 
                         <div class="row">
-                            <label>Départ</label>
-                            <input type="text" name="search[departure]" />
-                            <img src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
+                            <label for="departure-search">Départ</label>
+                            <input type="text" id="departure-search" class="datepicker" name="search[departure]" />
+                            <img id="departure-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
                         </div>
                             
                         <div class="row">
@@ -36,9 +36,9 @@
                         </div>
 
                         <div class="row">
-                            <label>Retour</label>
-                            <input type="text" name="search[return]" />
-                            <img src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
+                            <label for="return-search">Retour</label>
+                            <input type="text" id="return-search" class="datepicker" name="search[return]" />
+                            <img id="return-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
                         </div>
                         
                         <div class="row-radio">
@@ -48,7 +48,7 @@
                             
                         <div class="row-radio"> 
                             <input id="return-1" type="radio" name="search[withReturn]" value="1" />
-                            <label for="return-0">Aller retour</label>
+                            <label for="return-1">Aller retour</label>
                         </div>
                         
                         <div class="row-sep">&nbsp;</div>
@@ -118,7 +118,22 @@
                 <div class="offre-3">
                     <img src="{{ asset("img/offre_croisiere.png") }}" alt="" />
                 </div>
-            </div>
-            
+            </div>            
         </div>    
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset("css/blitzer/jquery-ui-1.8.16.custom.css") }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/jquery-1.6.2.min.js") }}"></script>
+    <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
+    <script>
+	$(function() {
+		$(".datepicker").datepicker();
+                $("#departure-img").click(function (){$("#departure-search").focus();});
+                $("#return-img").click(function (){$("#return-search").focus();});
+	});
+    </script>    
 {% endblock %}

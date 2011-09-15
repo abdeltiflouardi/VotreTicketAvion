@@ -1220,7 +1220,7 @@
           <argument type="collection">
             <argument key="security.firewall.map.context.dev" type="service">
               <service class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-                <argument>^/(_(profiler|wdt)|css|img|js)/</argument>
+                <argument>^/(_(profiler|wdt)|css|img|images|js)/</argument>
               </service>
             </argument>
             <argument key="security.firewall.map.context.login" type="service">

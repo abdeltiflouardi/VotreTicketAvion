@@ -12,7 +12,7 @@ security:
 
     firewalls:
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|img|js)/
+            pattern:  ^/(_(profiler|wdt)|css|img|images|js)/
             security: false
 
         login:

@@ -13,6 +13,7 @@ class SearchController extends Controller {
     public function resultsAction() {
         $request = $this->getRequest();  
         $session = $request->getSession();
+
         $search = new SearchRequest();
         $vols = new VolsRequest();
 
@@ -34,7 +35,7 @@ class SearchController extends Controller {
         $this->set('departure', $this->pager($this->buildDepartureQuery()));
         $this->set('arrival', $this->pager($this->buildArrivalQuery()));
 
-        return $this->view('FrontendWebBundle:Search:results.html.twig');
+        return $this->view('FrontendWebBundle:Search:results.html.twig');                
     }
 
     private function buildDepartureQuery() {

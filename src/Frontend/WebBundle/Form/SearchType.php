@@ -18,7 +18,7 @@ class SearchType extends AbstractType
                 ->add('children')
                 ->add('babies')
                 ;
-        
+               
     }
 
     public function getName()

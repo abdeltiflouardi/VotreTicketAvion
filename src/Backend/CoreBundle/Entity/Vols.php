@@ -3,6 +3,7 @@
 namespace Backend\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Backend\CoreBundle\Entity\Vols
@@ -76,7 +77,16 @@ class Vols
      */
     private $aeroportArrivee;
 
+    /**
+     * 
+     * @ORM\OneToMany(targetEntity="Tarif", mappedBy="vols")
+     */
+    private $tarifs;
 
+    public function __construct()
+    {
+        $this->tarifs = new ArrayCollection();
+    }    
 
     /**
      * Get id
@@ -228,6 +238,26 @@ class Vols
         return $this->aeroportArrivee;
     }
 
+    /**
+     * Add tarifs
+     *
+     * @param Backend\CoreBundle\Entity\Tarif $tarifs
+     */
+    public function addTarifs(\Backend\CoreBundle\Entity\Tarif $tarifs)
+    {
+        $this->tarifs[] = $tarifs;
+    }
+
+    /**
+     * Get tarifs
+     *
+     * @return Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getTarifs()
+    {
+        return $this->tarifs;
+    }
+    
     public function __toString() {
         return $this->getAeroportDepart() . ' >> ' . $this->getAeroportArrivee();
     }    

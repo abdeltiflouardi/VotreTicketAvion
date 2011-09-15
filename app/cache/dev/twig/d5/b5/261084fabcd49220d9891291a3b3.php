@@ -12,6 +12,8 @@ class __TwigTemplate_d5b5261084fabcd49220d9891291a3b3 extends Twig_Template
         $this->parent = array();
         $this->blocks = array(
             'content' => array($this, 'block_content'),
+            'stylesheets' => array($this, 'block_stylesheets'),
+            'javascripts' => array($this, 'block_javascripts'),
         );
     }
 
@@ -77,9 +79,9 @@ class __TwigTemplate_d5b5261084fabcd49220d9891291a3b3 extends Twig_Template
                         </div>
 
                         <div class=\"row\">
-                            <label>Départ</label>
-                            <input type=\"text\" name=\"search[departure]\" />
-                            <img src=\"";
+                            <label for=\"departure-search\">Départ</label>
+                            <input type=\"text\" id=\"departure-search\" class=\"datepicker\" name=\"search[departure]\" />
+                            <img id=\"departure-img\" src=\"";
         // line 25
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("img/calendrier.png"), "html");
         echo "\" alt=\"Calendrier\" />
@@ -110,9 +112,9 @@ class __TwigTemplate_d5b5261084fabcd49220d9891291a3b3 extends Twig_Template
                         </div>
 
                         <div class=\"row\">
-                            <label>Retour</label>
-                            <input type=\"text\" name=\"search[return]\" />
-                            <img src=\"";
+                            <label for=\"return-search\">Retour</label>
+                            <input type=\"text\" id=\"return-search\" class=\"datepicker\" name=\"search[return]\" />
+                            <img id=\"return-img\" src=\"";
         // line 41
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("img/calendrier.png"), "html");
         echo "\" alt=\"Calendrier\" />
@@ -125,7 +127,7 @@ class __TwigTemplate_d5b5261084fabcd49220d9891291a3b3 extends Twig_Template
                             
                         <div class=\"row-radio\"> 
                             <input id=\"return-1\" type=\"radio\" name=\"search[withReturn]\" value=\"1\" />
-                            <label for=\"return-0\">Aller retour</label>
+                            <label for=\"return-1\">Aller retour</label>
                         </div>
                         
                         <div class=\"row-sep\">&nbsp;</div>
@@ -289,9 +291,39 @@ class __TwigTemplate_d5b5261084fabcd49220d9891291a3b3 extends Twig_Template
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("img/offre_croisiere.png"), "html");
         echo "\" alt=\"\" />
                 </div>
-            </div>
-            
+            </div>            
         </div>    
+";
+    }
+
+    // line 125
+    public function block_stylesheets($context, array $blocks = array())
+    {
+        // line 126
+        echo "    <link href=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("css/blitzer/jquery-ui-1.8.16.custom.css"), "html");
+        echo "\" rel=\"stylesheet\" type=\"text/css\" />
+";
+    }
+
+    // line 129
+    public function block_javascripts($context, array $blocks = array())
+    {
+        // line 130
+        echo "    <script src=\"";
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery-1.6.2.min.js"), "html");
+        echo "\"></script>
+    <script src=\"";
+        // line 131
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("js/jquery-ui-1.8.16.custom.min.js"), "html");
+        echo "\"></script>
+    <script>
+\t\$(function() {
+\t\t\$(\".datepicker\").datepicker();
+                \$(\"#departure-img\").click(function (){\$(\"#departure-search\").focus();});
+                \$(\"#return-img\").click(function (){\$(\"#return-search\").focus();});
+\t});
+    </script>    
 ";
     }
 
