@@ -11,31 +11,53 @@ use Backend\CoreBundle\Controller\BaseController as Controller,
 class SearchController extends Controller {
 
     public function resultsAction() {
-        $request = $this->getRequest();  
-        $session = $request->getSession();
-
-        $search = new SearchRequest();
-        $vols = new VolsRequest();
-
-        $form_search = $this->createForm(new SearchType(), $search);
-        $form_vols = $this->createForm(new VolsType(), $vols);
-
-        if ($request->getMethod() == 'POST') {
-            $form_vols->bindRequest($request);
-
-            $session->set('vols', $vols);
-
-            return $this->redirectTo('FrontendWebBundle_client_subscribe');
-        }
-
-        $form_search->bindRequest($request);
-
-        $session->set('search', $search);
-
-        $this->set('departure', $this->pager($this->buildDepartureQuery()));
-        $this->set('arrival', $this->pager($this->buildArrivalQuery()));
-
-        return $this->view('FrontendWebBundle:Search:results.html.twig');                
+        
+        $search_request = new  SearchRequest();
+        $search_form = $this->createForm(new SearchType(), $search_request);
+        
+        
+        
+        
+//        $request = $this->getRequest();  
+//        $session = $request->getSession();
+//
+//        $search = new SearchRequest();
+//        $vols = new VolsRequest();
+//
+//        $form_search = $this->createFormBuilder($search)
+//                ->add('airportDeparture', 'entity', array('required' => false, 'class' => 'BackendCoreBundle:Aeroport', 'property' => 'aeroport'))
+//                ->add('dateDeparture', 'date', array('required' => false, 'widget' => 'single_text'))
+//                ->add('airportArrival', 'entity', array('required' => false, 'class' => 'BackendCoreBundle:Aeroport', 'property' => 'aeroport'))
+//                ->add('dateArrival', 'date', array('required' => false, 'widget' => 'single_text'))
+//                ->add('withReturn', 'radio', array('required' => false))
+//                ->add('adult', 'choice', array('choices' => range(0, 9)))
+//                ->add('children', 'choice', array('choices' => range(0, 9)))
+//                ->add('babies', 'choice', array('choices' => range(0, 9)))
+//                ->getForm();        
+//        
+//        $form_vols = $this->createForm(new VolsType(), $vols);
+//
+//        if ($request->getMethod() == 'POST') {
+//            $form_vols->bindRequest($request);
+//
+//            $session->set('vols', $vols);
+//
+//            return $this->redirectTo('FrontendWebBundle_client_subscribe');
+//        }
+//        
+//        $arrival = $search->getAirportArrival();
+//        $departure = $search->getAirportDeparture();
+//        if (!$arrival || !$departure) {
+//            $this->set('form_search', $form_search->createView());
+//            return $this->view('FrontendWebBundle:Search:form.html.twig');   
+//        }
+//
+//        $session->set('search', $search);
+//
+//        $this->set('departure', $this->pager($this->buildDepartureQuery()));
+//        $this->set('arrival', $this->pager($this->buildArrivalQuery()));
+//
+//        return $this->view('FrontendWebBundle:Search:results.html.twig');                
     }
 
     private function buildDepartureQuery() {

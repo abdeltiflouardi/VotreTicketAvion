@@ -126,6 +126,12 @@ class BackendCoreBundleEntityClientProxy extends \Backend\CoreBundle\Entity\Clie
         return parent::getEmail();
     }
 
+    public function __toString()
+    {
+        $this->__load();
+        return parent::__toString();
+    }
+
 
     public function __sleep()
     {

@@ -126,10 +126,28 @@ class BackendCoreBundleEntityVolsProxy extends \Backend\CoreBundle\Entity\Vols i
         return parent::getAeroportArrivee();
     }
 
+    public function addTarifs(\Backend\CoreBundle\Entity\Tarif $tarifs)
+    {
+        $this->__load();
+        return parent::addTarifs($tarifs);
+    }
+
+    public function getTarifs()
+    {
+        $this->__load();
+        return parent::getTarifs();
+    }
+
+    public function __toString()
+    {
+        $this->__load();
+        return parent::__toString();
+    }
+
 
     public function __sleep()
     {
-        return array('__isInitialized__', 'id', 'dateDepart', 'dateArive', 'heureDepart', 'heureArivee', 'active', 'aeroportDepart', 'aeroportArrivee');
+        return array('__isInitialized__', 'id', 'dateDepart', 'dateArive', 'heureDepart', 'heureArivee', 'active', 'aeroportDepart', 'aeroportArrivee', 'tarifs');
     }
 
     public function __clone()
