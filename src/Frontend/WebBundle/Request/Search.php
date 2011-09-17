@@ -8,7 +8,7 @@ class Search {
     private $dateDeparture;
     private $dateArrival;
     private $withReturn;
-    private $adult;
+    private $adults;
     private $children;
     private $babies;
 
@@ -51,12 +51,12 @@ class Search {
         return $this->withReturn;
     }
     
-    public function setAdult($adult) {
-        $this->adult = $adult;
+    public function setAdults($adults) {
+        $this->adults = $adults;
     }
 
-    public function getAdult() {
-        return $this->adult;
+    public function getAdults() {
+        return $this->adults;
     }
     
     public function setChildren($children) {

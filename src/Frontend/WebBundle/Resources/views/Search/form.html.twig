@@ -1,8 +1,68 @@
 {% extends "FrontendWebBundle::layout.html.twig" %}
 
 {% block content %}
-<form>
-    {{ form_widget(form_search) }}
-        <input type="submit" value="Send" />
+<form action="{{ path("FrontendWebBundle_search_result") }}" method="post">
+    <fieldset class="form">
+        <div class="form-row">
+            <label class="label">&nbsp;</label>
+            {{ form_widget(search_form.withReturn[0]) }} <label for="searchForm_withReturn_0">Aller simple</label> 
+            {{ form_widget(search_form.withReturn[1]) }} <label for="searchForm_withReturn_1">Aller retour</label> 
+        </div>
+        <div class="form-row">
+            {{ form_label(search_form.airportDeparture, null, {'attr': {'class': 'label'}}) }}
+            {{ form_widget(search_form.airportDeparture) }}
+            {{ form_errors(search_form.airportDeparture) }}
+        </div>
+        <div class="form-row">
+            {{ form_label(search_form.dateDeparture, null, {'attr': {'class': 'label'}}) }}
+            {{ form_widget(search_form.dateDeparture, {'attr': {'class': 'datepicker'}}) }}
+            <img id="departure-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
+            {{ form_errors(search_form.dateDeparture) }}    
+        </div>
+        <div class="form-row">
+            {{ form_label(search_form.airportArrival, null, {'attr': {'class': 'label'}}) }}
+            {{ form_widget(search_form.airportArrival) }}
+            {{ form_errors(search_form.airportArrival) }}
+        </div>
+        <div class="form-row">
+            {{ form_label(search_form.dateArrival, null, {'attr': {'class': 'label'}}) }}
+            {{ form_widget(search_form.dateArrival, {'attr': {'class': 'datepicker'}}) }}
+            <img id="departure-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
+            {{ form_errors(search_form.dateArrival) }}     
+        </div>
+        <div class="form-row">
+            <label class="label">Adults</label>
+            {{ form_widget(search_form.adults) }}
+            {{ form_errors(search_form.adults) }}            
+        </div>  
+        <div class="form-row">   
+            <label class="label">Enfants <small>(2-11 ans)</small></label>
+            {{ form_widget(search_form.children) }}
+            {{ form_errors(search_form.children) }}
+        </div>  
+        <div class="form-row">   
+            <label class="label">Bébés <small>(< 2 ans)</small></label>
+            {{ form_widget(search_form.babies) }}
+            {{ form_errors(search_form.babies) }}
+        </div>
+        {{ form_rest(search_form) }}
+        <input type="submit" value="Rechercher" class="button" />
+    </fieldset>
 </form>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset("css/blitzer/jquery-ui-1.8.16.custom.css") }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/jquery-1.6.2.min.js") }}"></script>
+    <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
+    <script>
+	$(function() {
+		$(".datepicker").datepicker();
+                $("#departure-img").click(function (){$("#searchForm_dateDeparture").focus();});
+                $("#return-img").click(function (){$("#searchForm_dateArrival").focus();});
+	});
+    </script>    
 {% endblock %}

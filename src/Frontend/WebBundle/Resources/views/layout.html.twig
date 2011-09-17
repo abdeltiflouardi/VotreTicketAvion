@@ -21,15 +21,15 @@
                 <li><a href="#contatto">Contatto</a></li>
             </ul>
             <ul id="menu">
-                <li><a href="{{ path("FrontendWebBundle_homepage") }}" alt="home">Home</a></li>
-                <li><a href="#voli">Voli</a></li>
+                <li><a href="{{ path("FrontendWebBundle_web_index") }}" alt="home">Home</a></li>
+                <li><a href="{{ path("FrontendWebBundle_search_result") }}">Voli</a></li>
                 <li><a href="#auto">Auto</a></li>
                 <li><a href="#hotel">Hotel</a></li>
                 <li><a href="#corciere">Corciere</a></li>
                 <li class="last"><a href="#consigli-pratici">Consigli Pratici</a></li>
             </ul>
         </div>
-            
+       
         {% block content %}{% endblock %}
             
         <div id="footer">
@@ -37,7 +37,7 @@
             <p class="copyright">Copyright &copy; 2011 tous droits reservés</p>
         </div>
     </div>
-
+        
     {% block javascripts %}{% endblock %}        
 </body>
 </html>

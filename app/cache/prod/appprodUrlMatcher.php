@@ -25,12 +25,12 @@ class appprodUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $allow = array();
         $pathinfo = urldecode($pathinfo);
 
-        // FrontendWebBundle_homepage
+        // FrontendWebBundle_web_index
         if (rtrim($pathinfo, '/') === '') {
             if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'FrontendWebBundle_homepage');
+                return $this->redirect($pathinfo.'/', 'FrontendWebBundle_web_index');
             }
-            return array (  '_controller' => 'Frontend\\WebBundle\\Controller\\HomeController::indexAction',  '_route' => 'FrontendWebBundle_homepage',);
+            return array (  '_controller' => 'Frontend\\WebBundle\\Controller\\HomeController::indexAction',  '_route' => 'FrontendWebBundle_web_index',);
         }
 
         // FrontendWebBundle_search_result

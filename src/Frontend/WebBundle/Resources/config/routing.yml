@@ -1,11 +1,11 @@
-FrontendWebBundle_homepage:
+FrontendWebBundle_web_index:
     pattern:  /
     defaults: { _controller: FrontendWebBundle:Home:index }
 
 FrontendWebBundle_search_result:
     pattern:  /results
     defaults: { _controller: FrontendWebBundle:Search:results }
-    
+
 FrontendWebBundle_client_subscribe:
   pattern:  /subscribe
   defaults: { _controller: FrontendWebBundle:Client:subscribe }

@@ -429,7 +429,7 @@ class appProdProjectContainer extends Container
     }
     protected function getSessionService()
     {
-        return $this->services['session'] = new \Symfony\Component\HttpFoundation\Session($this->get('session.storage'), 'en');
+        return $this->services['session'] = new \Symfony\Component\HttpFoundation\Session($this->get('session.storage'), 'fr');
     }
     protected function getSession_StorageService()
     {
@@ -510,7 +510,7 @@ class appProdProjectContainer extends Container
     }
     protected function getTemplating_Helper_TranslatorService()
     {
-        return $this->services['templating.helper.translator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper($this->get('translator'));
+        return $this->services['templating.helper.translator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Helper\TranslatorHelper($this->get('translator.default'));
     }
     protected function getTemplating_LoaderService()
     {
@@ -532,19 +532,49 @@ class appProdProjectContainer extends Container
     {
         return $this->services['translation.loader.yml'] = new \Symfony\Component\Translation\Loader\YamlFileLoader();
     }
-    protected function getTranslatorService()
-    {
-        return $this->services['translator'] = new \Symfony\Component\Translation\IdentityTranslator($this->get('translator.selector'));
-    }
     protected function getTranslator_DefaultService()
     {
-        return $this->services['translator.default'] = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, $this->get('translator.selector'), array('translation.loader.php' => 'php', 'translation.loader.yml' => 'yml', 'translation.loader.xliff' => 'xliff'), array('cache_dir' => '/media/data/server/sites/air/app/cache/prod/translations', 'debug' => false), $this->get('session'));
+        $this->services['translator.default'] = $instance = new \Symfony\Bundle\FrameworkBundle\Translation\Translator($this, new \Symfony\Component\Translation\MessageSelector(), array('translation.loader.php' => 'php', 'translation.loader.yml' => 'yml', 'translation.loader.xliff' => 'xliff'), array('cache_dir' => '/media/data/server/sites/air/app/cache/prod/translations', 'debug' => false), $this->get('session'));
+        $instance->setFallbackLocale('fr');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.ru.xliff', 'ru', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.fa.xliff', 'fa', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.sr.xliff', 'sr', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.id.xliff', 'id', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.de.xliff', 'de', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.ja.xliff', 'ja', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.he.xliff', 'he', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.nl.xliff', 'nl', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.eu.xliff', 'eu', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.sk.xliff', 'sk', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.ca.xliff', 'ca', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.mn.xliff', 'mn', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.es.xliff', 'es', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.fr.xliff', 'fr', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.cs.xliff', 'cs', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.sl.xliff', 'sl', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.ua.xliff', 'ua', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.sv.xliff', 'sv', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.pt_PT.xliff', 'pt_PT', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.lt.xliff', 'lt', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.ro.xliff', 'ro', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.et.xliff', 'et', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.lb.xliff', 'lb', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.zh_CN.xliff', 'zh_CN', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.hu.xliff', 'hu', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.da.xliff', 'da', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.pt_BR.xliff', 'pt_BR', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.fi.xliff', 'fi', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.it.xliff', 'it', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/vendor/symfony/src/Symfony/Bundle/FrameworkBundle/Resources/translations/validators.pl.xliff', 'pl', 'validators');
+        $instance->addResource('xliff', '/media/data/server/sites/air/src/Backend/AdminBundle/Resources/translations/messages.fr.xliff', 'fr', 'messages');
+        $instance->addResource('yml', '/media/data/server/sites/air/src/Frontend/WebBundle/Resources/translations/messages.fr.yml', 'fr', 'messages');
+        return $instance;
     }
     protected function getTwigService()
     {
         $this->services['twig'] = $instance = new \Twig_Environment($this->get('twig.loader'), array('debug' => false, 'strict_variables' => false, 'exception_controller' => 'Symfony\\Bundle\\TwigBundle\\Controller\\ExceptionController::showAction', 'cache' => '/media/data/server/sites/air/app/cache/prod/twig', 'charset' => 'UTF-8'));
         $instance->addExtension(new \Symfony\Bundle\SecurityBundle\Twig\Extension\SecurityExtension($this->get('security.context')));
-        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator')));
+        $instance->addExtension(new \Symfony\Bridge\Twig\Extension\TranslationExtension($this->get('translator.default')));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\AssetsExtension($this));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\ActionsExtension($this));
         $instance->addExtension(new \Symfony\Bundle\TwigBundle\Extension\CodeExtension($this));
@@ -577,6 +607,10 @@ class appProdProjectContainer extends Container
     {
         return $this->get('doctrine.orm.default_entity_manager');
     }
+    protected function getTranslatorService()
+    {
+        return $this->get('translator.default');
+    }
     protected function getAssetic_AssetFactoryService()
     {
         return $this->services['assetic.asset_factory'] = new \Symfony\Bundle\AsseticBundle\Factory\AssetFactory($this->get('kernel'), $this, new \Symfony\Component\DependencyInjection\ParameterBag\ParameterBag($this->getDefaultParameters()), '/media/data/server/sites/air/app/../web', false);
@@ -604,10 +638,6 @@ class appProdProjectContainer extends Container
     protected function getTemplating_LocatorService()
     {
         return $this->services['templating.locator'] = new \Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator($this->get('file_locator'), '/media/data/server/sites/air/app/cache/prod');
-    }
-    protected function getTranslator_SelectorService()
-    {
-        return $this->services['translator.selector'] = new \Symfony\Component\Translation\MessageSelector();
     }
     protected function getValidator_Mapping_ClassMetadataFactoryService()
     {
@@ -671,7 +701,7 @@ class appProdProjectContainer extends Container
             'mailer_host' => 'localhost',
             'mailer_user' => '',
             'mailer_password' => '',
-            'locale' => 'en',
+            'locale' => 'fr',
             'secret' => 'd625dd689b8d684cda3af6f75b08e6dfe60f83a3',
             'router_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\RouterListener',
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
@@ -694,7 +724,7 @@ class appProdProjectContainer extends Container
             'session.storage.native.class' => 'Symfony\\Component\\HttpFoundation\\SessionStorage\\NativeSessionStorage',
             'session.storage.filesystem.class' => 'Symfony\\Component\\HttpFoundation\\SessionStorage\\FilesystemSessionStorage',
             'session_listener.class' => 'Symfony\\Bundle\\FrameworkBundle\\EventListener\\SessionListener',
-            'session.default_locale' => 'en',
+            'session.default_locale' => 'fr',
             'session.storage.options' => array(
             ),
             'form.extension.class' => 'Symfony\\Component\\Form\\Extension\\DependencyInjection\\DependencyInjectionExtension',

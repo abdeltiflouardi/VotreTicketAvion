@@ -54,7 +54,7 @@ class __TwigTemplate_46389fff5e9c8014f9605c3f5710adc1 extends Twig_Template
             <ul id=\"menu\">
                 <li><a href=\"";
         // line 24
-        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("FrontendWebBundle_homepage"), "html");
+        echo twig_escape_filter($this->env, $this->env->getExtension('routing')->getPath("FrontendWebBundle_web_index"), "html");
         echo "\" alt=\"home\">Home</a></li>
                 <li><a href=\"#voli\">Voli</a></li>
                 <li><a href=\"#auto\">Auto</a></li>
@@ -63,7 +63,7 @@ class __TwigTemplate_46389fff5e9c8014f9605c3f5710adc1 extends Twig_Template
                 <li class=\"last\"><a href=\"#consigli-pratici\">Consigli Pratici</a></li>
             </ul>
         </div>
-            
+       
         ";
         // line 33
         $this->displayBlock('content', $context, $blocks);
@@ -74,7 +74,7 @@ class __TwigTemplate_46389fff5e9c8014f9605c3f5710adc1 extends Twig_Template
             <p class=\"copyright\">Copyright &copy; 2011 tous droits reservés</p>
         </div>
     </div>
-
+        
     ";
         // line 41
         $this->displayBlock('javascripts', $context, $blocks);

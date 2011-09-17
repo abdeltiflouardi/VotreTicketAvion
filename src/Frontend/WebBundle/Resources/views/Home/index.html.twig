@@ -5,79 +5,56 @@
             <div id="slot-1">
                 <div class="search">
                     <div class="tab-1">Réserver maintenant</div>
-                    <form action="{{ path("FrontendWebBundle_search_result") }}">
+                    <form action="{{ path("FrontendWebBundle_search_result") }}" method="post">
+                        <div class="row-radio">
+                            {{ form_widget(search_form.withReturn[0]) }}
+                            <label for="searchForm_withReturn_0">Aller simple</label>
+                        </div>
+
+                        <div class="row-radio"> 
+                            {{ form_widget(search_form.withReturn[1]) }}
+                            <label for="searchForm_withReturn_1">Aller retour</label>
+                        </div>                        
+                        
+                        <div class="row-sep">&nbsp;</div>                            
+                            
                         <div class="row">
                             <label>De</label>
-                            
-                            <select name="search[airportDeparture]">
-                                <option value="">--</option>
-                                {% for aeroport in aeroports %}
-                                    <option value="{{ aeroport.id  }}">
-                                        {{ aeroport.aeroport  }}
-                                    </option>
-                                {% endfor %}
-                            </select>
+                            {{ form_widget(search_form.airportDeparture) }}
                         </div>
 
                         <div class="row">
-                            <label for="departure-search">Départ</label>
-                            <input type="text" id="departure-search" class="datepicker" name="search[departure]" />
+                            <label for="searchForm_dateDeparture">Départ</label>
+                            {{ form_widget(search_form.dateDeparture, {'attr': {'class': 'datepicker', 'readonly': 'readonly'}}) }}
                             <img id="departure-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
                         </div>
                             
                         <div class="row">
                             <label>Vers</label>
-                            <select name="search[airportArrival]">
-                                <option value="">--</option>
-                                {% for aeroport in aeroports %}
-                                    <option value="{{ aeroport.id  }}">{{ aeroport.aeroport  }}</option>
-                                {% endfor %}
-                            </select>
+                            {{ form_widget(search_form.airportArrival) }}
                         </div>
 
                         <div class="row">
-                            <label for="return-search">Retour</label>
-                            <input type="text" id="return-search" class="datepicker" name="search[return]" />
+                            <label for="searchForm_dateArrival">Retour</label>
+                            {{ form_widget(search_form.dateArrival, {'attr': {'class': 'datepicker', 'readonly': 'readonly'}}) }}
                             <img id="return-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
                         </div>
                         
-                        <div class="row-radio">
-                            <input id="return-0" type="radio" name="search[withReturn]" value="0" checked="checked" />
-                            <label for="return-0">Aller simple</label>
-                        </div>
-                            
-                        <div class="row-radio"> 
-                            <input id="return-1" type="radio" name="search[withReturn]" value="1" />
-                            <label for="return-1">Aller retour</label>
-                        </div>
+                        <div class="row-sep">&nbsp;</div>                            
                         
-                        <div class="row-sep">&nbsp;</div>
-                            
                         <div class="row-select">
-                            <label>Adulte</label>
-                            <select name="search[adult]">
-                                {% for i in range(0, 10) %}
-                                    <option value="{{ i }}" {% if loop.index == 1 %}selected="selected"{% endif %}>{{ i }}</option>
-                                {% endfor %}
-                            </select>                        
+                            <label>Adultes</label>
+                            {{ form_widget(search_form.adults) }}
                         </div>
                             
                         <div class="row-select">
-                            <label>Enfant(2-11 ans)</label>
-                            <select name="search[children]">
-                                {% for i in range(0, 10) %}
-                                    <option value="{{ i }}">{{ i }}</option>
-                                {% endfor %}
-                            </select>        
+                            <label>Enfants <small>(2-11 ans)</small></label>
+                            {{ form_widget(search_form.children) }}
                         </div>
 
                         <div class="row-select">
-                            <label>Bébé (< 2 ans)</label>
-                            <select name="search[babies]">
-                                {% for i in range(0, 10) %}
-                                    <option value="{{ i }}">{{ i }}</option>
-                                {% endfor %}
-                            </select>                        
+                            <label>Bébés <small>(< 2 ans)</small></label>
+                            {{ form_widget(search_form.babies) }}
                         </div>
                         
                         <div class="row-info">
@@ -87,6 +64,8 @@
                         <div class="row-submit">
                             <input type="image" src="{{ asset("img/rechercher_btn.png") }}" />
                         </div>
+                        
+                        {{ form_rest(search_form) }}
                     </form>
                 </div>
                 <div class="search-picture">
@@ -132,8 +111,8 @@
     <script>
 	$(function() {
 		$(".datepicker").datepicker();
-                $("#departure-img").click(function (){$("#departure-search").focus();});
-                $("#return-img").click(function (){$("#return-search").focus();});
+                $("#departure-img").click(function (){$("#searchForm_dateDeparture").focus();});
+                $("#return-img").click(function (){$("#searchForm_dateArrival").focus();});
 	});
     </script>    
 {% endblock %}

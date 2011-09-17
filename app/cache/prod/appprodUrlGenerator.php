@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 class appprodUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerator
 {
     static private $declaredRouteNames = array(
-       'FrontendWebBundle_homepage' => true,
+       'FrontendWebBundle_web_index' => true,
        'FrontendWebBundle_search_result' => true,
        'FrontendWebBundle_client_subscribe' => true,
        'FrontendWebBundle_client_subscribe_success' => true,
@@ -72,7 +72,7 @@ class appprodUrlGenerator extends Symfony\Component\Routing\Generator\UrlGenerat
         return $this->doGenerate($variables, $defaults, $requirements, $tokens, $parameters, $name, $absolute);
     }
 
-    private function getFrontendWebBundle_homepageRouteInfo()
+    private function getFrontendWebBundle_web_indexRouteInfo()
     {
         return array(array (), array (  '_controller' => 'Frontend\\WebBundle\\Controller\\HomeController::indexAction',), array (), array (  0 =>   array (    0 => 'text',    1 => '/',  ),));
     }
