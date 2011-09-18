@@ -27,7 +27,7 @@
         <div class="form-row">
             {{ form_label(search_form.dateArrival, null, {'attr': {'class': 'label'}}) }}
             {{ form_widget(search_form.dateArrival, {'attr': {'class': 'datepicker'}}) }}
-            <img id="departure-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
+            <img id="return-img" src="{{ asset('img/calendrier.png') }}" alt="Calendrier" />
             {{ form_errors(search_form.dateArrival) }}     
         </div>
         <div class="form-row">
@@ -60,7 +60,7 @@
     <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
     <script>
 	$(function() {
-		$(".datepicker").datepicker();
+		$(".datepicker").datepicker({dateFormat:'dd/mm/yy'});
                 $("#departure-img").click(function (){$("#searchForm_dateDeparture").focus();});
                 $("#return-img").click(function (){$("#searchForm_dateArrival").focus();});
 	});

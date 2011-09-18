@@ -18,13 +18,13 @@ class ClientController extends Controller
         $form = $this->createForm(new ClientType(), $client);
         if ($request->getMethod() == 'POST') {
             $form->bindRequest($request);  
-            
+
             if ($form->isValid()) {
                 $em = $this->em();
-                
+
                 $em->persist($client);
                 $em->flush();
-                
+
                 /**
                  * Save reservation
                  */
@@ -44,7 +44,7 @@ class ClientController extends Controller
                 return $this->redirectTo('FrontendWebBundle_client_subscribe_success');
             }
         }
-        
+
         $this->set('form', $form->createView());
         
         return $this->view('FrontendWebBundle:Client:subscribe.html.twig');

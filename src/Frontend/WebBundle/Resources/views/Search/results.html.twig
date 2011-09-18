@@ -47,7 +47,7 @@
                             </li>
                             <li>
                                 <label>{{ 'Children price'|trans }}:</label> 
-                                <span>{{ vols.tarifs[0].tarifEnfant|default('&nbsp;') }} {{ param('currency') }}</span>
+                                <span>{{ vols.tarifs[0].tarifEnfant|default('&nbsp;')|raw }} {{ param('currency') }}</span>
                             </li>
                             <li>
                                 <label>{{ 'Babies price'|trans }}:</label> 
@@ -77,10 +77,11 @@
     </div>
     #}       
     <div class="sidebar-right" style="text-align: right; border: 0px; background-color: #fff;">
-        <form action="#" method="post">
+        <form id="volsForm" action="{{ path('FrontendWebBundle_vols_store') }}" method="post">
             <input type="hidden" id="vols-departue" name="vols[departure]" value="" />
+            <input type="hidden" id="vols-departue" name="vols[return]" value="" />
             <input type="submit" value="{{ 'Send your vols'|trans }}" class="button" />
-        </form>  
+        </form>
     </div>      
 </div>
 {% endblock %}
@@ -104,6 +105,16 @@
 
             // Put value of selected item to form
             $('#vols-departue').val($(this).attr('id').replace('item-', ''));
+        });
+        
+        $('#volsForm').submit(function() {
+            var val = $('#vols-departue').val();
+            if (val == '') {
+                alert('{{ 'Choose a vols'|trans }}');
+                return false;
+            }
+
+            return true;
         });
     </script>
 {% endblock %}

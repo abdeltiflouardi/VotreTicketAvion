@@ -109,10 +109,10 @@
     <script src="{{ asset("js/jquery-1.6.2.min.js") }}"></script>
     <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
     <script>
-	$(function() {
-		$(".datepicker").datepicker();
-                $("#departure-img").click(function (){$("#searchForm_dateDeparture").focus();});
-                $("#return-img").click(function (){$("#searchForm_dateArrival").focus();});
+	$(function() {            
+            $(".datepicker").datepicker({dateFormat:'dd/mm/yy'});
+            $("#departure-img").click(function (){$("#searchForm_dateDeparture").focus();});
+            $("#return-img").click(function (){$("#searchForm_dateArrival").focus();});
 	});
     </script>    
 {% endblock %}

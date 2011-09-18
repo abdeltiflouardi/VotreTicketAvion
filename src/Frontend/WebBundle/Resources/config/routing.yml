@@ -13,3 +13,8 @@ FrontendWebBundle_client_subscribe:
 FrontendWebBundle_client_subscribe_success:
   pattern:  /subscribe/success
   defaults: { _controller: FrontendWebBundle:Client:subscribeSuccess }  
+
+FrontendWebBundle_vols_store:
+  pattern:  /vols
+  defaults: { _controller: FrontendWebBundle:Vols:store }
+    
