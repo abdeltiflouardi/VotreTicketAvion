@@ -1,13 +1,20 @@
 {% extends "FrontendWebBundle::layout.html.twig" %}
 
 {% block content %}
-
-<fieldset>
-    <legend>Informations personnelles</legend>
+<div class="content">
     <form action="{{ path('FrontendWebBundle_client_subscribe') }}" method="post" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
+        <fieldset class="personal-infos">
+            <legend>Informations personnelles</legend>
+            {{ form_widget(form) }}
+        </fieldset>
 
-        <input type="submit" />
+        <fieldset class="passagers-infos">
+            <legend>Passagers</legend>
+
+        </fieldset>
+        <div style="clear: both; text-align: right;">
+            <input type="submit" value="{{ 'Save your infos'|trans }}" class="button" />
+        </div>
     </form>
-</fieldset>
+</div>
 {% endblock %}
