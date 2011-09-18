@@ -35,6 +35,7 @@ class OutputExtension extends \Twig_Extension {
             'pager_pagination' => new \Twig_Function_Method($this, 'pagerPagination'),
             'gettype' => new \Twig_Function_Method($this, 'getType'),
             'is_key_exists' => new \Twig_Function_Method($this, 'isKeyExists'),
+            'param' => new \Twig_Function_Method($this, 'getParam'),
         );
     }
 
@@ -140,6 +141,10 @@ class OutputExtension extends \Twig_Extension {
         return false;
     }
 
+    public function getParam($name) {
+        return $this->container->getParameter($name);
+    }
+    
     /**
      * Name of this extension
      *

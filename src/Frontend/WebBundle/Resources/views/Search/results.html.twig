@@ -1,24 +1,64 @@
 {% extends "FrontendWebBundle::layout.html.twig" %}
 
-{% block content %}   
-<form action="" method="post">
-    <div class="airport-infos">
-        {{ departure.currentPageResults[0].aeroportDepart.aeroport }}
-        -
-        {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
-    </div>
-    <div class="list-results">
-        {% for vols in departure %}
-            <div class="item">
-                <input type="radio" name="vols[departure]" value="{{ vols.id }}" />
-                <ul>
-                    <li>{{ vols.dateDepart|date('d/m/Y') }}</li>
-                    <li>{{ vols.tarifs[0].tarifAdulte }}</li>
-                </ul>
-            </div>
-        {% endfor %}
+{% block content %}
+<div class="content">
+    <div class="sidebar-left">
+        <div class="title">{{ 'Details'|trans }}</div>
+        <div class="vols-details">
+            
+        </div>
     </div>
 
+    <div class="sidebar-right">
+            <div class="airport-infos">
+                {{ departure.currentPageResults[0].aeroportDepart.aeroport }}
+                -
+                {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
+            </div>
+            <div class="list-results">
+                {% for vols in departure %}
+                    <div id="item-{{ vols.id }}" class="item">
+                        <ul>
+                            <li class="title">{{ vols.dateDepart|date('d/m/Y') }}</li>
+                            <li class="price">{{ vols.tarifs[0].tarifAdulte }} {{ param('currency') }}</li>
+                        </ul>                     
+                    </div>
+                    <div id="vols-details-item-{{ vols.id }}" style="display: none;">
+                        <ul class="vols-details-list">
+                            <li>
+                                <label>{{ 'Date depature'|trans }}:</label> 
+                                <span>{{ vols.dateDepart|date('d/m/Y') }}</span>
+                            </li>
+                            <li>
+                                <label>{{ 'Hour departue'|trans }}:</label> 
+                                <span>{{ vols.heureDepart|date('H:i') }}</span>
+                            </li>
+                            <li>
+                                <label>{{ 'Date arrival'|trans }}:</label> 
+                                <span>{{ vols.dateArive|date('d/m/Y') }}</span>
+                            </li>
+                            <li>
+                                <label>{{ 'Hour arrival'|trans }}:</label> 
+                                <span>{{ vols.heureArivee|date('H:i') }}</span>
+                            </li>
+                            <li>
+                                <label>{{ 'Adults price'|trans }}:</label> 
+                                <span>{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
+                            </li>
+                            <li>
+                                <label>{{ 'Children price'|trans }}:</label> 
+                                <span>{{ vols.tarifs[0].tarifEnfant|default('&nbsp;') }} {{ param('currency') }}</span>
+                            </li>
+                            <li>
+                                <label>{{ 'Babies price'|trans }}:</label> 
+                                <span>{{ vols.tarifs[0].tarifBebe|default('&nbsp;')|raw }} {{ param('currency') }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                {% endfor %}
+            </div>
+    </div>
+    {#
     <div class="airport-infos">
         {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
         -
@@ -35,7 +75,35 @@
             </div>
         {% endfor %}
     </div>
-        
-        <input type="submit" value="Save" />
-</form>
+    #}       
+    <div class="sidebar-right" style="text-align: right; border: 0px; background-color: #fff;">
+        <form action="#" method="post">
+            <input type="hidden" id="vols-departue" name="vols[departure]" value="" />
+            <input type="submit" value="{{ 'Send your vols'|trans }}" class="button" />
+        </form>  
+    </div>      
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/jquery-1.6.2.min.js") }}"></script>
+    <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
+
+    <script>
+        $('.item').click(function() {
+            // Change color of selected vol
+            $('.item').css('background-color', '#FFF');
+            $('.item .price').css('color', '#000');
+
+            $(this).css('background-color', '#FF4242');
+            $(this).find('.price').css('color', '#FFF');
+
+            // Show details in left sidebar
+            block = '#vols-details-' + $(this).attr('id');
+            $('.vols-details').html($(block).html());
+
+            // Put value of selected item to form
+            $('#vols-departue').val($(this).attr('id').replace('item-', ''));
+        });
+    </script>
 {% endblock %}

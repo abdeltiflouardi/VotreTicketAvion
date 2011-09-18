@@ -209,15 +209,22 @@ div#footer-logo {
 
 .list-results .item {
     text-align: center;
-    width: 100px;
-    background-color: #A4C8F2;
+    background-color: #fff;
     margin: 10px;
-    padding: 10px;
+    padding: 5px;
     float: left;
 }
 
-.list-results .item  li {
-    margin: 5px 0;
+.list-results .item .title {
+    margin: -5px -5px 0 -5px;
+    background-color: #ccc;
+    padding: 5px;
+}
+
+.list-results .item .price {
+    font-weight: bold;
+    line-height: 40px;
+    font-size: 14px;
 }
 
 .search .tab-1 {
@@ -263,5 +270,48 @@ div.form-row .label {
 }
 
 .airport-infos {
+    background-color: #cc0000;
+    margin: -10px -10px 0 -10px;
+    padding: 5px;
     font-weight: bold;
+    color: #fff;
+}
+
+.sidebar-left {
+    width: 180px;
+    float: left;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.sidebar-left .title {
+    background-color: #cc0000;
+    margin: -10px -10px 0 -10px;
+    padding: 5px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.sidebar-right {
+    width: 780px;
+    float: right;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #F4F4F4;
+}
+
+.content {
+    width: 100%;
+    overflow: auto;
+    margin-bottom: 10px;
+}
+
+ul.vols-details-list li {
+    margin: 5px 0;
+}
+
+ul.vols-details-list li label {
+    font-weight: bold;
+    width: 100px;
+    float: left;
 }
