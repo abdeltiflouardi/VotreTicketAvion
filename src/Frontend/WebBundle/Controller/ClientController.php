@@ -4,6 +4,7 @@ namespace Frontend\WebBundle\Controller;
 
 use Backend\CoreBundle\Controller\BaseController as Controller,
     Backend\CoreBundle\Form\ClientType,
+    Backend\CoreBundle\Form\PassagerType,
     Backend\CoreBundle\Entity\Client,
     Backend\CoreBundle\Entity\Reservation,
     Backend\CoreBundle\Entity\Passager;
@@ -15,7 +16,7 @@ class ClientController extends Controller
     {
         $request = $this->getRequest();        
         $session = $request->getSession();
-        
+
         $client = new Client();
 
         $form = $this->createForm(new ClientType(), $client);
@@ -49,13 +50,21 @@ class ClientController extends Controller
                 $passagers_array = array_merge($adults, $children, $babies);
 
                 foreach($passagers_array as $passager_array) {
-                    $passager = new Passager();
-                    $passager->setTitre(null);
-                    $passager->setNom($passager_array['lastname']);
-                    $passager->setPrenom($passager_array['firstname']);
-                    $passager->setDateNaissance(null);
-                    $passager->setNationalite($passager_array['nationalty']);
+                    if (!empty($passager_array['dateNaissance'])) {
+                        $date_array = explode('/', $passager_array['dateNaissance']);
 
+                        $date = new \DateTime();
+                        $date->setDate($date_array[2], $date_array[1], $date_array[0]);
+                    } else
+                        $date = null;
+
+                    $passager = new Passager();
+                    $passager->setTitre($passager_array['titre']);
+                    $passager->setNom($passager_array['nom']);
+                    $passager->setPrenom($passager_array['prenom']);
+                    $passager->setDateNaissance($date);
+                    $passager->setNationalite($passager_array['nationalite']);
+                    
                     $reservation->addPassager($passager);
                     $passager->addReservation($reservation);
 

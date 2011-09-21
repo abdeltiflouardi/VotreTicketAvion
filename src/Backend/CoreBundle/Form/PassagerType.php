@@ -14,7 +14,7 @@ class PassagerType extends AbstractType
             ->add('prenom')
             ->add('nom')
             ->add('nationalite')
-            ->add('dateNaissance')
+            ->add('dateNaissance', 'birthday', array('format' => 'dd/MM/yyyy'))
             ->add('reservation')
         ;
     }

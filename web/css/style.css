@@ -329,3 +329,7 @@ ul.vols-details-list li label {
     width: 620px;
     float: right;
 }
+
+.passagers-infos input {
+    width: 130px;
+}

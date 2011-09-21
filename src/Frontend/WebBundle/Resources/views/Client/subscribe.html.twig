@@ -15,6 +15,7 @@
                     <legend>{{ 'Adults'|trans }}</legend>
                     <table>
                         <tr>
+                            <td>{{ 'Titre'|trans }}</td>
                             <td>{{ 'Lastname'|trans }}</td>
                             <td>{{ 'Firstname'|trans }}</td>
                             <td>{{ 'Birthday'|trans }}</td>
@@ -22,10 +23,17 @@
                         </tr>
                         {% for i in 1..(search.adults)  %}
                         <tr>
-                            <td><input type="text" name="adults[{{ i }}][lastname]" /></td>
-                            <td><input type="text" name="adults[{{ i }}][firstname]" /></td>
-                            <td><input type="text" name="adults[{{ i }}][birthday]" /></td>
-                            <td><input type="text" name="adults[{{ i }}][nationalty]" /></td>
+                            <td>
+                                <select name="adults[{{ i }}][titre]">
+                                    <option value=""></option>
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Ms.">Ms.</option>
+                                </select>
+                            </td>
+                            <td><input type="text" name="adults[{{ i }}][nom]" /></td>
+                            <td><input type="text" name="adults[{{ i }}][prenom]" /></td>
+                            <td><input type="text" name="adults[{{ i }}][dateNaissance]" class="datepicker" readonly="readonly" /></td>
+                            <td><input type="text" name="adults[{{ i }}][nationalite]" /></td>
                         </tr>
                         {% endfor %}
                     </table>              
@@ -36,6 +44,7 @@
                     <legend>{{ 'Children'|trans }}</legend>
                     <table>
                         <tr>
+                            <td>{{ 'Titre'|trans }}</td>
                             <td>{{ 'Lastname'|trans }}</td>
                             <td>{{ 'Firstname'|trans }}</td>
                             <td>{{ 'Birthday'|trans }}</td>
@@ -43,10 +52,17 @@
                         </tr>
                         {% for i in 1..(search.children)  %}
                         <tr>
-                            <td><input type="text" name="children[{{ i }}][lastname]" /></td>
-                            <td><input type="text" name="children[{{ i }}][firstname]" /></td>
-                            <td><input type="text" name="children[{{ i }}][birthday]" /></td>
-                            <td><input type="text" name="children[{{ i }}][nationalty]" /></td>
+                            <td>
+                                <select name="children[{{ i }}][titre]">
+                                    <option value=""></option>
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Ms.">Ms.</option>
+                                </select>                            
+                            </td>
+                            <td><input type="text" name="children[{{ i }}][nom]" /></td>
+                            <td><input type="text" name="children[{{ i }}][prenom]" /></td>
+                            <td><input type="text" name="children[{{ i }}][dateNaissance]" class="datepicker" readonly="readonly" /></td>
+                            <td><input type="text" name="children[{{ i }}][nationalite]" /></td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -57,6 +73,7 @@
                     <legend>{{ 'Babies'|trans }}</legend>
                     <table>
                         <tr>
+                            <td>{{ 'Titre'|trans }}</td>
                             <td>{{ 'Lastname'|trans }}</td>
                             <td>{{ 'Firstname'|trans }}</td>
                             <td>{{ 'Birthday'|trans }}</td>
@@ -64,10 +81,17 @@
                         </tr>
                         {% for i in 1..(search.babies)  %}
                         <tr>
-                            <td><input type="text" name="babies[{{ i }}][lastname]" /></td>
-                            <td><input type="text" name="babies[{{ i }}][firstname]" /></td>
-                            <td><input type="text" name="babies[{{ i }}][birthday]" /></td>
-                            <td><input type="text" name="babies[{{ i }}][nationalty]" /></td>
+                            <td>
+                                <select name="babies[{{ i }}][titre]">
+                                    <option value=""></option>
+                                    <option value="Mr.">Mr.</option>
+                                    <option value="Ms.">Ms.</option>
+                                </select>                            
+                            </td>
+                            <td><input type="text" name="babies[{{ i }}][nom]" /></td>
+                            <td><input type="text" name="babies[{{ i }}][prenom]" /></td>
+                            <td><input type="text" name="babies[{{ i }}][dateNaissance]" class="datepicker" readonly="readonly" /></td>
+                            <td><input type="text" name="babies[{{ i }}][nationalite]" /></td>
                         </tr>
                         {% endfor %}
                     </table>
@@ -79,4 +103,18 @@
         </div>
     </form>
 </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset("css/blitzer/jquery-ui-1.8.16.custom.css") }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset("js/jquery-1.6.2.min.js") }}"></script>
+    <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
+    <script>
+	$(function() {
+		$(".datepicker").datepicker({dateFormat:'dd/mm/yy'});
+	});
+    </script>    
 {% endblock %}
