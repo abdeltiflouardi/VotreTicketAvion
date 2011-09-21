@@ -33,7 +33,7 @@ class SearchController extends Controller {
 
         if ($session->has('search_request'))
             if ($search_form->isValid()) {
-                $this->set('departure', $this->pager($this->buildDepartureQuery()));
+                $this->set('departure', $this->pager($this->buildDepartureQuery($search_request)));
                 $this->set('arrival', $this->pager($this->buildArrivalQuery()));
 
                 $session->set('search', $search_request);
@@ -56,24 +56,23 @@ class SearchController extends Controller {
         $this->set('list_passagers', $list);
     }
     
-    private function buildDepartureQuery() {
+    private function buildDepartureQuery($search_request) {
         $dql = "SELECT v FROM BackendCoreBundle:Vols v";
-
-        $request = $this->getRequest();
-
+        
         // Build where
         $where = array();
 
-        if ($airportDeparture = $request->get('airportDeparture')) {
-            $where[] = 'v.aeroportDepart=' . $airportDeparture;
+        if ($airportDeparture = $search_request->getAirportDeparture()) {
+            $where[] = 'v.aeroportDepart=' . $airportDeparture->getId();
         }
 
-        if ($airportArrival = $request->get('airportArrival')) {
-            $where[] = 'v.aeroportArrivee=' . $airportArrival;
+        if ($airportArrival = $search_request->getAirportArrival()) {
+            $where[] = 'v.aeroportArrivee=' . $airportArrival->getId();
         }
 
-        if ($departure = $request->get('departure')) {
-            $where[] = "v.dateDepart>'" . $departure . "'";
+        if ($departure = $search_request->getDateDeparture()) {
+            $departure->sub(date_interval_create_from_date_string('3 days'));
+            $where[] = "v.dateDepart>'" . $departure->format('Y-m-d') . "'";
         }
 
         // Bind Where to SELECT
