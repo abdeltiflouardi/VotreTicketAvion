@@ -10,7 +10,69 @@
 
         <fieldset class="passagers-infos">
             <legend>Passagers</legend>
-
+            {% if search.adults != 0 %}
+                <fieldset>
+                    <legend>{{ 'Adults'|trans }}</legend>
+                    <table>
+                        <tr>
+                            <td>{{ 'Lastname'|trans }}</td>
+                            <td>{{ 'Firstname'|trans }}</td>
+                            <td>{{ 'Birthday'|trans }}</td>
+                            <td>{{ 'Nationalty'|trans }}</td>
+                        </tr>
+                        {% for i in 1..(search.adults)  %}
+                        <tr>
+                            <td><input type="text" name="adults[{{ i }}][lastname]" /></td>
+                            <td><input type="text" name="adults[{{ i }}][firstname]" /></td>
+                            <td><input type="text" name="adults[{{ i }}][birthday]" /></td>
+                            <td><input type="text" name="adults[{{ i }}][nationalty]" /></td>
+                        </tr>
+                        {% endfor %}
+                    </table>              
+                </fieldset>
+            {% endif %}
+            {% if search.children != 0 %}
+                <fieldset>
+                    <legend>{{ 'Children'|trans }}</legend>
+                    <table>
+                        <tr>
+                            <td>{{ 'Lastname'|trans }}</td>
+                            <td>{{ 'Firstname'|trans }}</td>
+                            <td>{{ 'Birthday'|trans }}</td>
+                            <td>{{ 'Nationalty'|trans }}</td>
+                        </tr>
+                        {% for i in 1..(search.children)  %}
+                        <tr>
+                            <td><input type="text" name="children[{{ i }}][lastname]" /></td>
+                            <td><input type="text" name="children[{{ i }}][firstname]" /></td>
+                            <td><input type="text" name="children[{{ i }}][birthday]" /></td>
+                            <td><input type="text" name="children[{{ i }}][nationalty]" /></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </fieldset>
+            {% endif %}
+            {% if search.babies != 0 %}
+                <fieldset>
+                    <legend>{{ 'Babies'|trans }}</legend>
+                    <table>
+                        <tr>
+                            <td>{{ 'Lastname'|trans }}</td>
+                            <td>{{ 'Firstname'|trans }}</td>
+                            <td>{{ 'Birthday'|trans }}</td>
+                            <td>{{ 'Nationalty'|trans }}</td>
+                        </tr>
+                        {% for i in 1..(search.babies)  %}
+                        <tr>
+                            <td><input type="text" name="babies[{{ i }}][lastname]" /></td>
+                            <td><input type="text" name="babies[{{ i }}][firstname]" /></td>
+                            <td><input type="text" name="babies[{{ i }}][birthday]" /></td>
+                            <td><input type="text" name="babies[{{ i }}][nationalty]" /></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </fieldset>    
+            {% endif %}
         </fieldset>
         <div style="clear: both; text-align: right;">
             <input type="submit" value="{{ 'Save your infos'|trans }}" class="button" />

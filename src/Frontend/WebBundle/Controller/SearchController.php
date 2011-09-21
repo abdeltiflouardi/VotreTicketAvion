@@ -38,6 +38,8 @@ class SearchController extends Controller {
 
                 $session->set('search', $search_request);
 
+                $this->buildListPassagers($search_request);
+
                 return $this->view('FrontendWebBundle:Search:results.html.twig');
             }
 
@@ -46,6 +48,14 @@ class SearchController extends Controller {
         return $this->view('FrontendWebBundle:Search:form.html.twig');
     }
 
+    private function buildListPassagers($search_request) {
+        $list[] = array('type' => 'adults', 'number' => $search_request->getAdults());
+        $list[] = array('type' => 'children', 'number' => $search_request->getChildren());
+        $list[] = array('type' => 'babies', 'number' => $search_request->getBabies());
+
+        $this->set('list_passagers', $list);
+    }
+    
     private function buildDepartureQuery() {
         $dql = "SELECT v FROM BackendCoreBundle:Vols v";
 

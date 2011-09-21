@@ -43,15 +43,15 @@
                             </li>
                             <li>
                                 <label>{{ 'Adults price'|trans }}:</label> 
-                                <span>{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
+                                <span class="adults-price">{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
                             </li>
                             <li>
                                 <label>{{ 'Children price'|trans }}:</label> 
-                                <span>{{ vols.tarifs[0].tarifEnfant|default('&nbsp;')|raw }} {{ param('currency') }}</span>
+                                <span class="children-price">{{ vols.tarifs[0].tarifEnfant|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
                             </li>
                             <li>
                                 <label>{{ 'Babies price'|trans }}:</label> 
-                                <span>{{ vols.tarifs[0].tarifBebe|default('&nbsp;')|raw }} {{ param('currency') }}</span>
+                                <span class="babies-price">{{ vols.tarifs[0].tarifBebe|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
                             </li>
                         </ul>
                     </div>
@@ -75,7 +75,28 @@
             </div>
         {% endfor %}
     </div>
-    #}       
+    #}
+    <div class="sidebar-right" style="margin-top: 10px; border: 0px;">
+        <table style="width: 100%;">
+            <tr>
+                <td>Passagers</td>
+                <td>Nombre</td>
+                <td>Prix</td>
+                <td>Total</td>            
+            </tr>
+            {% for passager_infos in list_passagers %}
+            <tr>
+                <td>{{ passager_infos['type'] }}</td>
+                <td class="number-{{ passager_infos['type'] }}">{{ passager_infos['number'] }}</td>
+                <td class="price-{{ passager_infos['type'] }}"></td>
+                <td class="total-{{ passager_infos['type'] }}"></td>            
+            </tr>                
+            {% endfor %}            
+        </table>
+    </div>    
+    <div class="sidebar-right" style="text-align: right; border: 0px; background-color: #fff;">
+        <label>TOTAL: <span class="total"></span></label>
+    </div>        
     <div class="sidebar-right" style="text-align: right; border: 0px; background-color: #fff;">
         <form id="volsForm" action="{{ path('FrontendWebBundle_vols_store') }}" method="post">
             <input type="hidden" id="vols-departue" name="vols[departure]" value="" />
@@ -105,6 +126,24 @@
 
             // Put value of selected item to form
             $('#vols-departue').val($(this).attr('id').replace('item-', ''));
+            
+            // Print total price
+            price_adults = parseInt($('.vols-details').find('.adults-price').text());
+            number_adults = parseInt($('.number-adults').text());
+            price_children = parseInt($('.vols-details').find('.children-price').text());
+            number_children = parseInt($('.number-children').text());
+            price_babies = parseInt($('.vols-details').find('.babies-price').text());
+            number_babies = parseInt($('.number-babies').text());
+            
+            $('.price-adults').html(price_adults);
+            $('.price-children').html(price_children);
+            $('.price-babies').html(price_babies);
+            
+            $('.total-adults').html(price_adults*number_adults);
+            $('.total-children').html(price_children*number_children);
+            $('.total-babies').html(price_babies*number_babies);
+            
+            $('.total').html(price_babies*number_babies + price_children*number_children + price_adults*number_adults);
         });
         
         $('#volsForm').submit(function() {
