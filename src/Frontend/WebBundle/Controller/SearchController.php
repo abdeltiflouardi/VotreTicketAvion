@@ -35,9 +35,10 @@ class SearchController extends Controller {
             if ($search_form->isValid()) {
                 $this->set('departure', $this->getListDeparture($search_request));
                 $this->set('arrival', $this->pager($this->buildArrivalQuery()));
-
+                $this->set('search', $search_request);
+                
                 $session->set('search', $search_request);
-
+                
                 $this->buildListPassagers($search_request);
 
                 return $this->view('FrontendWebBundle:Search:results.html.twig');

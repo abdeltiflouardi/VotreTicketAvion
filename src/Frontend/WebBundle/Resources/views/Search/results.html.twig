@@ -11,9 +11,9 @@
 
     <div class="sidebar-right">
         <div class="airport-infos">
-            {{ departure[0].aeroportDepart.aeroport }}
+            {{ search.airportDeparture.aeroport }}
             -
-            {{ departure[0].aeroportArrivee.aeroport }}
+            {{ search.airportArrival.aeroport }}
         </div>
         <div class="list-results">
             <div class="previous-item"><<</div>            
@@ -156,6 +156,8 @@
             
             $('.total').html(price_babies*number_babies + price_children*number_children + price_adults*number_adults);
         });
+        
+        $('.item:first').trigger('click');
         
         $('#volsForm').submit(function() {
             var val = $('#vols-departue').val();
