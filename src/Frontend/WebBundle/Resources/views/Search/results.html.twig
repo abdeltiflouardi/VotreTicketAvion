@@ -10,55 +10,64 @@
     </div>
 
     <div class="sidebar-right">
-        {% if departure.nbResults > 0 %}
-            <div class="airport-infos">
-                {{ departure.currentPageResults[0].aeroportDepart.aeroport }}
-                -
-                {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
-            </div>
-            <div class="list-results">
-                {% for vols in departure %}
-                    <div id="item-{{ vols.id }}" class="item">
-                        <ul>
-                            <li class="title">{{ vols.dateDepart|date('d/m/Y') }}</li>
-                            <li class="price">{{ vols.tarifs[0].tarifAdulte }} {{ param('currency') }}</li>
-                        </ul>                     
-                    </div>
-                    <div id="vols-details-item-{{ vols.id }}" style="display: none;">
-                        <ul class="vols-details-list">
-                            <li>
-                                <label>{{ 'Date depature'|trans }}:</label> 
-                                <span>{{ vols.dateDepart|date('d/m/Y') }}</span>
-                            </li>
-                            <li>
-                                <label>{{ 'Hour departue'|trans }}:</label> 
-                                <span>{{ vols.heureDepart|date('H:i') }}</span>
-                            </li>
-                            <li>
-                                <label>{{ 'Date arrival'|trans }}:</label> 
-                                <span>{{ vols.dateArive|date('d/m/Y') }}</span>
-                            </li>
-                            <li>
-                                <label>{{ 'Hour arrival'|trans }}:</label> 
-                                <span>{{ vols.heureArivee|date('H:i') }}</span>
-                            </li>
-                            <li>
-                                <label>{{ 'Adults price'|trans }}:</label> 
-                                <span class="adults-price">{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
-                            </li>
-                            <li>
-                                <label>{{ 'Children price'|trans }}:</label> 
-                                <span class="children-price">{{ vols.tarifs[0].tarifEnfant|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
-                            </li>
-                            <li>
-                                <label>{{ 'Babies price'|trans }}:</label> 
-                                <span class="babies-price">{{ vols.tarifs[0].tarifBebe|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
-                            </li>
-                        </ul>
-                    </div>
-                {% endfor %}
-            </div>
-            {% endif %}
+        <div class="airport-infos">
+            {{ departure[0].aeroportDepart.aeroport }}
+            -
+            {{ departure[0].aeroportArrivee.aeroport }}
+        </div>
+        <div class="list-results">
+            <div class="previous-item"><<</div>            
+            {% for vols in departure %}
+                {% if gettype(vols) == 'string' %}
+                <div class="no-item">
+                    <ul>
+                        <li class="title">{{ vols }}</li>
+                        <li class="price">{{ 'No fly'|trans }}</li>
+                    </ul>                     
+                </div>            
+                {% else %}
+                <div id="item-{{ vols.id }}" class="item">
+                    <ul>
+                        <li class="title">{{ vols.dateDepart|date('d/m/Y') }}</li>
+                        <li class="price">{{ vols.tarifs[0].tarifAdulte }} {{ param('currency') }}</li>
+                    </ul>                     
+                </div>
+                <div id="vols-details-item-{{ vols.id }}" style="display: none;">
+                    <ul class="vols-details-list">
+                        <li>
+                            <label>{{ 'Date depature'|trans }}:</label> 
+                            <span>{{ vols.dateDepart|date('d/m/Y') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Hour departue'|trans }}:</label> 
+                            <span>{{ vols.heureDepart|date('H:i') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Date arrival'|trans }}:</label> 
+                            <span>{{ vols.dateArive|date('d/m/Y') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Hour arrival'|trans }}:</label> 
+                            <span>{{ vols.heureArivee|date('H:i') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Adults price'|trans }}:</label> 
+                            <span class="adults-price">{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Children price'|trans }}:</label> 
+                            <span class="children-price">{{ vols.tarifs[0].tarifEnfant|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Babies price'|trans }}:</label> 
+                            <span class="babies-price">{{ vols.tarifs[0].tarifBebe|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="next-item">>></div>
+        </div>
     </div>
     {#
     <div class="airport-infos">

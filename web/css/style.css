@@ -207,24 +207,28 @@ div#footer-logo {
     overflow: auto;
 }
 
-.list-results .item {
+.list-results .item,  .list-results .no-item {
     text-align: center;
     background-color: #fff;
-    margin: 10px;
+    margin: 9px;
     padding: 5px;
     float: left;
 }
 
-.list-results .item .title {
+.list-results .item .title, .list-results .no-item .title {
     margin: -5px -5px 0 -5px;
     background-color: #ccc;
     padding: 5px;
 }
 
-.list-results .item .price {
+.list-results .item .price, .list-results .no-item .price {
     font-weight: bold;
     line-height: 40px;
     font-size: 14px;
+}
+
+.list-results .no-item .price {
+    color: #ccc;
 }
 
 .search .tab-1 {
@@ -349,4 +353,16 @@ tr.th {
 
 .table td.number {
     text-align: right;
+}
+
+.previous-item {
+    width: 20px;
+    float: left;
+    margin-top: 10px;
+}
+
+.next-item {
+    width: 20px;
+    float: right;
+    margin-top: 10px;
 }

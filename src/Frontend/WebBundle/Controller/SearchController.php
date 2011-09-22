@@ -33,7 +33,7 @@ class SearchController extends Controller {
 
         if ($session->has('search_request'))
             if ($search_form->isValid()) {
-                $this->set('departure', $this->pager($this->buildDepartureQuery($search_request)));
+                $this->set('departure', $this->getListDeparture($search_request));
                 $this->set('arrival', $this->pager($this->buildArrivalQuery()));
 
                 $session->set('search', $search_request);
@@ -56,7 +56,7 @@ class SearchController extends Controller {
         $this->set('list_passagers', $list);
     }
     
-    private function buildDepartureQuery($search_request) {
+    private function getListDeparture($search_request) {
         $dql = "SELECT v FROM BackendCoreBundle:Vols v";
         
         // Build where
@@ -70,9 +70,13 @@ class SearchController extends Controller {
             $where[] = 'v.aeroportArrivee=' . $airportArrival->getId();
         }
 
-        if ($departure = $search_request->getDateDeparture()) {
-            $departure->sub(date_interval_create_from_date_string('3 days'));
-            $where[] = "v.dateDepart>'" . $departure->format('Y-m-d') . "'";
+        if ($departure_date = $search_request->getDateDeparture()) {
+            $departure = clone $departure_date;
+            
+            $date_from = $departure_date->sub(new \DateInterval('P3D'))->format('Y-m-d');
+            $date_to = $departure_date->add(new \DateInterval('P8D'))->format('Y-m-d');
+            
+            $where[] = sprintf("v.dateDepart BETWEEN '%s' AND '%s'", $date_from, $date_to);
         }
 
         // Bind Where to SELECT
@@ -83,9 +87,25 @@ class SearchController extends Controller {
         // Bind Order to SELECT
         $dql .= " ORDER BY v.dateDepart";
         
+        $list = array();
         $query = $this->em()->createQuery($dql);
-
-        return $query;
+        foreach($query->getResult() as $vols) {
+            $index = $departure->diff($vols->getDateDepart());
+            $index = $index->format('%R%a');
+            $index += 3;
+            $list[$index] = $vols;
+        }
+        
+        $departure->sub(new \DateInterval('P3D'))->format('d/m/Y');
+        for ($i=0,$j=8; $i<$j; $i++) {
+            if (!isset($list[$i])) {
+                $list[$i] = $departure->format('d/m/Y');
+            }      
+            $departure->add(new \DateInterval('P1D'));
+        }
+        ksort($list);
+        
+        return $list;
     }
 
     private function buildArrivalQuery() {
