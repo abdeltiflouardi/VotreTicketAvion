@@ -10,10 +10,11 @@
     </div>
 
     <div class="sidebar-right">
+        {% if departure.nbResults > 0 %}
             <div class="airport-infos">
-                {# { departure.currentPageResults[0].aeroportDepart.aeroport } #}
+                {{ departure.currentPageResults[0].aeroportDepart.aeroport }}
                 -
-                {# { departure.currentPageResults[0].aeroportArrivee.aeroport } #}
+                {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
             </div>
             <div class="list-results">
                 {% for vols in departure %}
@@ -57,6 +58,7 @@
                     </div>
                 {% endfor %}
             </div>
+            {% endif %}
     </div>
     {#
     <div class="airport-infos">
@@ -77,19 +79,19 @@
     </div>
     #}
     <div class="sidebar-right" style="margin-top: 10px; border: 0px;">
-        <table style="width: 100%;">
+        <table class="table">
             <tr>
-                <td>Passagers</td>
-                <td>Nombre</td>
-                <td>Prix</td>
-                <td>Total</td>            
+                <th>Passagers</th>
+                <th>Nombre</th>
+                <th>Prix</th>
+                <th>Total</th>            
             </tr>
             {% for passager_infos in list_passagers %}
             <tr>
                 <td>{{ passager_infos['type'] }}</td>
-                <td class="number-{{ passager_infos['type'] }}">{{ passager_infos['number'] }}</td>
-                <td class="price-{{ passager_infos['type'] }}"></td>
-                <td class="total-{{ passager_infos['type'] }}"></td>            
+                <td class="number-{{ passager_infos['type'] }} number">{{ passager_infos['number'] }}</td>
+                <td class="price-{{ passager_infos['type'] }} number"></td>
+                <td class="total-{{ passager_infos['type'] }} number"></td>            
             </tr>                
             {% endfor %}            
         </table>

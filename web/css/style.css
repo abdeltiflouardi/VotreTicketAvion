@@ -333,3 +333,20 @@ ul.vols-details-list li label {
 .passagers-infos input {
     width: 130px;
 }
+
+tr.th {
+    font-weight: bold;
+}
+
+.table {
+    width: 100%;
+}
+
+.table, .table td, .table th {
+    border: 1px solid #ccc;
+    padding: 2px;
+}
+
+.table td.number {
+    text-align: right;
+}
