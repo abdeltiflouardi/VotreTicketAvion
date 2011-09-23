@@ -34,7 +34,7 @@ class SearchController extends Controller {
         if ($session->has('search_request'))
             if ($search_form->isValid()) {
                 $this->set('departure', $this->getListDeparture($search_request));
-                $this->set('arrival', $this->pager($this->buildArrivalQuery()));
+                $this->set('arrival', $this->getListArrival($search_request));
                 $this->set('search', $search_request);
                 
                 $session->set('search', $search_request);
@@ -109,24 +109,27 @@ class SearchController extends Controller {
         return $list;
     }
 
-    private function buildArrivalQuery() {
+    private function getListArrival($search_request) {
         $dql = "SELECT v FROM BackendCoreBundle:Vols v";
-
-        $request = $this->getRequest();
-
+        
         // Build where
         $where = array();
 
-        if ($airportDeparture = $request->get('airportDeparture')) {
-            $where[] = 'v.aeroportArrivee=' . $airportDeparture;
+        if ($airportArrival = $search_request->getAirportArrival()) {
+            $where[] = 'v.aeroportDepart=' . $airportArrival->getId();
         }
 
-        if ($airportArrival = $request->get('airportArrival')) {
-            $where[] = 'v.aeroportDepart=' . $airportArrival;
+        if ($airportDeparture = $search_request->getAirportDeparture()) {
+            $where[] = 'v.aeroportArrivee=' . $airportDeparture->getId();
         }
 
-        if ($departure = $request->get('departure')) {
-            $where[] = "v.dateDepart>'" . $departure . "'";
+        if ($arrival_date = $search_request->getDateArrival()) {
+            $arrival = clone $arrival_date;
+            
+            $date_from = $arrival_date->sub(new \DateInterval('P3D'))->format('Y-m-d');
+            $date_to = $arrival_date->add(new \DateInterval('P8D'))->format('Y-m-d');
+            
+            $where[] = sprintf("v.dateDepart BETWEEN '%s' AND '%s'", $date_from, $date_to);
         }
 
         // Bind Where to SELECT
@@ -137,9 +140,25 @@ class SearchController extends Controller {
         // Bind Order to SELECT
         $dql .= " ORDER BY v.dateDepart";
         
+        $list = array();
         $query = $this->em()->createQuery($dql);
-
-        return $query;
+        foreach($query->getResult() as $vols) {
+            $index = $arrival->diff($vols->getDateArive());
+            $index = $index->format('%R%a');
+            $index += 3;
+            $list[$index] = $vols;
+        }
+        
+        $arrival->sub(new \DateInterval('P3D'))->format('d/m/Y');
+        for ($i=0,$j=8; $i<$j; $i++) {
+            if (!isset($list[$i])) {
+                $list[$i] = $arrival->format('d/m/Y');
+            }      
+            $arrival->add(new \DateInterval('P1D'));
+        }
+        ksort($list);
+        
+        return $list;
     }    
     
 }

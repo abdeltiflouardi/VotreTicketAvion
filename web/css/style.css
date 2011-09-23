@@ -207,7 +207,9 @@ div#footer-logo {
     overflow: auto;
 }
 
-.list-results .item,  .list-results .no-item {
+.list-results .item,  
+.list-results .no-item,
+.list-results .item-return {
     text-align: center;
     background-color: #fff;
     margin: 9px;
@@ -215,13 +217,17 @@ div#footer-logo {
     float: left;
 }
 
-.list-results .item .title, .list-results .no-item .title {
+.list-results .item .title, 
+.list-results .no-item .title,
+.list-results .item-return .title {
     margin: -5px -5px 0 -5px;
     background-color: #ccc;
     padding: 5px;
 }
 
-.list-results .item .price, .list-results .no-item .price {
+.list-results .item .price, 
+.list-results .no-item .price,
+.list-results .item-return .price {
     font-weight: bold;
     line-height: 40px;
     font-size: 14px;
@@ -282,13 +288,17 @@ div.form-row .label {
 }
 
 .sidebar-left {
-    width: 180px;
+    width: 210px;
     float: left;
+}
+
+.box {
     padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
 }
 
-.sidebar-left .title {
+.box .title {
     background-color: #cc0000;
     margin: -10px -10px 0 -10px;
     padding: 5px;
@@ -355,13 +365,13 @@ tr.th {
     text-align: right;
 }
 
-.previous-item {
+.previous-item, .previous-return-item {
     width: 20px;
     float: left;
     margin-top: 10px;
 }
 
-.next-item {
+.next-item, .next-return-item {
     width: 20px;
     float: right;
     margin-top: 10px;

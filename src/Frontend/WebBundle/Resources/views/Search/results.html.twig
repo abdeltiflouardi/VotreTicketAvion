@@ -3,12 +3,21 @@
 {% block content %}
 <div class="content">
     <div class="sidebar-left">
-        <div class="title">{{ 'Details'|trans }}</div>
-        <div class="vols-details">
-            
-        </div>
-    </div>
+        <div class="box">
+            <div class="title">{{ 'Details'|trans }}</div>
+            <div class="vols-details">
 
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="title">{{ 'Details return'|trans }}</div>
+            <div class="vols-return-details">
+
+            </div>     
+        </div> 
+    </div>
+        
     <div class="sidebar-right">
         <div class="airport-infos">
             {{ search.airportDeparture.aeroport }}
@@ -69,24 +78,68 @@
             <div class="next-item">>></div>
         </div>
     </div>
-    {#
-    <div class="airport-infos">
-        {{ departure.currentPageResults[0].aeroportArrivee.aeroport }}
-        -
-        {{ departure.currentPageResults[0].aeroportDepart.aeroport }}
-    </div>
-    <div class="list-results">
-        {% for vols in arrival %}
-            <div class="item">
-                <input type="radio" name="vols[return]" value="{{ vols.id }}" />
-                <ul>
-                    <li>{{ vols.dateDepart|date('d/m/Y') }}</li>
-                    <li>{{ vols.tarifs[0].tarifAdulte }}</li>
-                </ul>
-            </div>
-        {% endfor %}
-    </div>
-    #}
+
+    <div class="sidebar-right" style="margin-top: 10px;">
+        <div class="airport-infos">
+            {{ search.airportArrival.aeroport }}
+            -
+            {{ search.airportDeparture.aeroport }}
+        </div>
+        <div class="list-results">
+            <div class="previous-return-item"><<</div>            
+            {% for vols in arrival %}
+                {% if gettype(vols) == 'string' %}
+                <div class="no-item">
+                    <ul>
+                        <li class="title">{{ vols }}</li>
+                        <li class="price">{{ 'No fly'|trans }}</li>
+                    </ul>                     
+                </div>            
+                {% else %}
+                <div id="item-{{ vols.id }}" class="item-return">
+                    <ul>
+                        <li class="title">{{ vols.dateDepart|date('d/m/Y') }}</li>
+                        <li class="price">{{ vols.tarifs[0].tarifAdulte }} {{ param('currency') }}</li>
+                    </ul>                     
+                </div>
+                <div id="vols-return-details-item-{{ vols.id }}" style="display: none;">
+                    <ul class="vols-details-list">
+                        <li>
+                            <label>{{ 'Date depature'|trans }}:</label> 
+                            <span>{{ vols.dateDepart|date('d/m/Y') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Hour departue'|trans }}:</label> 
+                            <span>{{ vols.heureDepart|date('H:i') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Date arrival'|trans }}:</label> 
+                            <span>{{ vols.dateArive|date('d/m/Y') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Hour arrival'|trans }}:</label> 
+                            <span>{{ vols.heureArivee|date('H:i') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Adults price'|trans }}:</label> 
+                            <span class="adults-price">{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Children price'|trans }}:</label> 
+                            <span class="children-price">{{ vols.tarifs[0].tarifEnfant|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
+                        </li>
+                        <li>
+                            <label>{{ 'Babies price'|trans }}:</label> 
+                            <span class="babies-price">{{ vols.tarifs[0].tarifBebe|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            {% endfor %}
+            <div class="next-return-item">>></div>
+        </div>    
+    </div>        
+        
     <div class="sidebar-right" style="margin-top: 10px; border: 0px;">
         <table class="table">
             <tr>
@@ -111,7 +164,7 @@
     <div class="sidebar-right" style="text-align: right; border: 0px; background-color: #fff;">
         <form id="volsForm" action="{{ path('FrontendWebBundle_vols_store') }}" method="post">
             <input type="hidden" id="vols-departue" name="vols[departure]" value="" />
-            <input type="hidden" id="vols-departue" name="vols[return]" value="" />
+            <input type="hidden" id="vols-return" name="vols[return]" value="" />
             <input type="submit" value="{{ 'Send your vols'|trans }}" class="button" />
         </form>
     </div>      
@@ -123,6 +176,35 @@
     <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
 
     <script>
+        function printVolsPrice() {
+            // Print total price
+            price_adults = parseInt($('.vols-details').find('.adults-price').text());
+            price_adults_return = parseInt($('.vols-return-details').find('.adults-price').text());
+            number_adults = parseInt($('.number-adults').text());
+            
+            price_children = parseInt($('.vols-details').find('.children-price').text());
+            price_children_return = parseInt($('.vols-return-details').find('.children-price').text());
+            number_children = parseInt($('.number-children').text());
+            
+            price_babies = parseInt($('.vols-details').find('.babies-price').text());
+            price_babies_return = parseInt($('.vols-return-details').find('.babies-price').text());
+            number_babies = parseInt($('.number-babies').text());
+            
+            $('.price-adults').html(price_adults_return + price_adults);
+            $('.price-children').html(price_children_return + price_children);
+            $('.price-babies').html(price_babies_return + price_babies_return);
+            
+            $('.total-adults').html((price_adults_return + price_adults)*number_adults);
+            $('.total-children').html((price_children_return + price_children)*number_children);
+            $('.total-babies').html((price_babies_return + price_babies_return)*number_babies);
+            
+            $('.total').html(
+                (price_adults_return + price_adults)*number_adults + 
+                (price_children_return + price_children)*number_children + 
+                (price_babies_return + price_babies_return)*number_babies
+            );            
+        }
+        
         $('.item').click(function() {
             // Change color of selected vol
             $('.item').css('background-color', '#FFF');
@@ -138,26 +220,30 @@
             // Put value of selected item to form
             $('#vols-departue').val($(this).attr('id').replace('item-', ''));
             
-            // Print total price
-            price_adults = parseInt($('.vols-details').find('.adults-price').text());
-            number_adults = parseInt($('.number-adults').text());
-            price_children = parseInt($('.vols-details').find('.children-price').text());
-            number_children = parseInt($('.number-children').text());
-            price_babies = parseInt($('.vols-details').find('.babies-price').text());
-            number_babies = parseInt($('.number-babies').text());
-            
-            $('.price-adults').html(price_adults);
-            $('.price-children').html(price_children);
-            $('.price-babies').html(price_babies);
-            
-            $('.total-adults').html(price_adults*number_adults);
-            $('.total-children').html(price_children*number_children);
-            $('.total-babies').html(price_babies*number_babies);
-            
-            $('.total').html(price_babies*number_babies + price_children*number_children + price_adults*number_adults);
+            printVolsPrice();
         });
         
         $('.item:first').trigger('click');
+        
+        $('.item-return').click(function() {
+            // Change color of selected vol
+            $('.item-return').css('background-color', '#FFF');
+            $('.item-return .price').css('color', '#000');
+
+            $(this).css('background-color', '#FF4242');
+            $(this).find('.price').css('color', '#FFF');
+
+            // Show details in left sidebar
+            block = '#vols-return-details-' + $(this).attr('id');
+            $('.vols-return-details').html($(block).html());
+
+            // Put value of selected item to form
+            $('#vols-return').val($(this).attr('id').replace('item-', ''));
+            
+            printVolsPrice();
+        });
+        
+        $('.item-return:first').trigger('click');        
         
         $('#volsForm').submit(function() {
             var val = $('#vols-departue').val();
