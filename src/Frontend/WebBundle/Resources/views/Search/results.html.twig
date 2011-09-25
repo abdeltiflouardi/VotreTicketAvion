@@ -27,53 +27,7 @@
         <div class="list-results">
             <div class="previous-item"><<</div>            
             {% for vols in departure %}
-                {% if gettype(vols) == 'string' %}
-                <div class="no-item">
-                    <ul>
-                        <li class="title">{{ vols }}</li>
-                        <li class="price">{{ 'No fly'|trans }}</li>
-                    </ul>                     
-                </div>            
-                {% else %}
-                <div id="item-{{ vols.id }}" class="item">
-                    <ul>
-                        <li class="title">{{ vols.dateDepart|date('d/m/Y') }}</li>
-                        <li class="price">{{ vols.tarifs[0].tarifAdulte }} {{ param('currency') }}</li>
-                    </ul>                     
-                </div>
-                <div id="vols-details-item-{{ vols.id }}" style="display: none;">
-                    <ul class="vols-details-list">
-                        <li>
-                            <label>{{ 'Date depature'|trans }}:</label> 
-                            <span>{{ vols.dateDepart|date('d/m/Y') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Hour departue'|trans }}:</label> 
-                            <span>{{ vols.heureDepart|date('H:i') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Date arrival'|trans }}:</label> 
-                            <span>{{ vols.dateArive|date('d/m/Y') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Hour arrival'|trans }}:</label> 
-                            <span>{{ vols.heureArivee|date('H:i') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Adults price'|trans }}:</label> 
-                            <span class="adults-price">{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Children price'|trans }}:</label> 
-                            <span class="children-price">{{ vols.tarifs[0].tarifEnfant|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Babies price'|trans }}:</label> 
-                            <span class="babies-price">{{ vols.tarifs[0].tarifBebe|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
-                        </li>
-                    </ul>
-                </div>
-                {% endif %}
+                {% include 'FrontendWebBundle:Search:item.html.twig' %}
             {% endfor %}
             <div class="next-item">>></div>
         </div>
@@ -86,55 +40,9 @@
             {{ search.airportDeparture.aeroport }}
         </div>
         <div class="list-results">
-            <div class="previous-return-item"><<</div>            
+            <div class="previous-return-item"><<</div>
             {% for vols in arrival %}
-                {% if gettype(vols) == 'string' %}
-                <div class="no-item">
-                    <ul>
-                        <li class="title">{{ vols }}</li>
-                        <li class="price">{{ 'No fly'|trans }}</li>
-                    </ul>                     
-                </div>            
-                {% else %}
-                <div id="item-{{ vols.id }}" class="item-return">
-                    <ul>
-                        <li class="title">{{ vols.dateDepart|date('d/m/Y') }}</li>
-                        <li class="price">{{ vols.tarifs[0].tarifAdulte }} {{ param('currency') }}</li>
-                    </ul>                     
-                </div>
-                <div id="vols-return-details-item-{{ vols.id }}" style="display: none;">
-                    <ul class="vols-details-list">
-                        <li>
-                            <label>{{ 'Date depature'|trans }}:</label> 
-                            <span>{{ vols.dateDepart|date('d/m/Y') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Hour departue'|trans }}:</label> 
-                            <span>{{ vols.heureDepart|date('H:i') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Date arrival'|trans }}:</label> 
-                            <span>{{ vols.dateArive|date('d/m/Y') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Hour arrival'|trans }}:</label> 
-                            <span>{{ vols.heureArivee|date('H:i') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Adults price'|trans }}:</label> 
-                            <span class="adults-price">{{ vols.tarifs[0].tarifAdulte|default('&nbsp;')|raw }} {{ param('currency') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Children price'|trans }}:</label> 
-                            <span class="children-price">{{ vols.tarifs[0].tarifEnfant|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
-                        </li>
-                        <li>
-                            <label>{{ 'Babies price'|trans }}:</label> 
-                            <span class="babies-price">{{ vols.tarifs[0].tarifBebe|default(vols.tarifs[0].tarifAdulte)|raw }} {{ param('currency') }}</span>
-                        </li>
-                    </ul>
-                </div>
-                {% endif %}
+                {% include 'FrontendWebBundle:Search:item_return.html.twig' %}
             {% endfor %}
             <div class="next-return-item">>></div>
         </div>    
@@ -146,14 +54,14 @@
                 <th>Passagers</th>
                 <th>Nombre</th>
                 <th>Prix</th>
-                <th>Total</th>            
+                <th>Total</th>
             </tr>
             {% for passager_infos in list_passagers %}
             <tr>
                 <td>{{ passager_infos['type'] }}</td>
                 <td class="number-{{ passager_infos['type'] }} number">{{ passager_infos['number'] }}</td>
                 <td class="price-{{ passager_infos['type'] }} number"></td>
-                <td class="total-{{ passager_infos['type'] }} number"></td>            
+                <td class="total-{{ passager_infos['type'] }} number"></td>
             </tr>                
             {% endfor %}            
         </table>
@@ -205,46 +113,46 @@
             );            
         }
         
-        $('.item').click(function() {
-            // Change color of selected vol
-            $('.item').css('background-color', '#FFF');
-            $('.item .price').css('color', '#000');
-
-            $(this).css('background-color', '#FF4242');
-            $(this).find('.price').css('color', '#FFF');
-
-            // Show details in left sidebar
-            block = '#vols-details-' + $(this).attr('id');
-            $('.vols-details').html($(block).html());
-
-            // Put value of selected item to form
-            $('#vols-departue').val($(this).attr('id').replace('item-', ''));
-            
-            printVolsPrice();
-        });
+        function slider(obj, currentDate, action, isReturn) {
+            var param = currentDate +'|'+ action +'|'+ isReturn;
+            $.ajax({
+               type: "GET",
+               url: "{{ path('FrontendWebBundle_search_result_ajax') }}",
+               data: "data=" + param,
+               success: function(msg){
+                   if (action=="NEXT") {
+                        obj.parent().children("div").next("div:first").fadeOut("slow").delay(100).remove();
+                        obj.before(msg);
+                    } else {
+                        obj.parent().children("div:last").prev().fadeOut("slow").delay(100).remove();
+                        obj.after(msg);
+                    }
+                    
+               }
+             });
+        }               
         
-        $('.item:first').trigger('click');
+        {% include 'FrontendWebBundle:Search:item_js.html.twig' %}
         
-        $('.item-return').click(function() {
-            // Change color of selected vol
-            $('.item-return').css('background-color', '#FFF');
-            $('.item-return .price').css('color', '#000');
-
-            $(this).css('background-color', '#FF4242');
-            $(this).find('.price').css('color', '#FFF');
-
-            // Show details in left sidebar
-            block = '#vols-return-details-' + $(this).attr('id');
-            $('.vols-return-details').html($(block).html());
-
-            // Put value of selected item to form
-            $('#vols-return').val($(this).attr('id').replace('item-', ''));
-            
-            printVolsPrice();
-        });
-        
+        $('.item:first').trigger('click');        
         $('.item-return:first').trigger('click');        
         
+        // Event of next/previous item
+        $('.next-item').click(function(){
+            slider($(this), $(this).prev().find('.title').html(), 'NEXT', 0);
+        });
+        $('.previous-item').click(function(){
+            slider($(this), $(this).next().find('.title').html(), 'PREVIOUS', 0);
+        });
+        $('.next-return-item').click(function(){
+            slider($(this), $(this).prev().find('.title').html(), 'NEXT', 1);
+        });
+        $('.previous-return-item').click(function(){
+            slider($(this), $(this).next().find('.title').html(), 'PREVIOUS', 1);
+        });
+        
+
+        // Event submit
         $('#volsForm').submit(function() {
             var val = $('#vols-departue').val();
             if (val == '') {

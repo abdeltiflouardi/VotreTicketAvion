@@ -49,6 +49,52 @@ class SearchController extends Controller {
         return $this->view('FrontendWebBundle:Search:form.html.twig');
     }
 
+    public function resultsAjaxAction() {
+        $request = $this->getRequest();
+        $session = $request->getSession();
+        $search_request = new  SearchRequest();
+        
+        $search_form = $this->createForm(new SearchType(), $search_request);
+        $search_form->bindRequest ($session->get('search_request'));
+        
+        $data = $request->get('data');
+        list($date, $action, $isReturn) = explode('|', $data); // 0:Date|1:Action(Next)|2:isReturn
+        
+        $date = \DateTime::createFromFormat('d/m/Y', $date);
+        if ($action == 'NEXT')
+            $date->add(new \DateInterval('P1D'));
+        else
+            $date->sub(new \DateInterval('P1D'));
+        
+        if ($isReturn == 1) {
+            $tpl = 'FrontendWebBundle:Search:item_return.html.twig';    
+            $arrivee_id = $search_request->getAirportDeparture()->getId();
+            $depart_id = $search_request->getAirportArrival()->getId();        
+        } else {
+            $tpl = 'FrontendWebBundle:Search:item.html.twig';
+            $depart_id = $search_request->getAirportDeparture()->getId();
+            $arrivee_id = $search_request->getAirportArrival()->getId();
+        }
+            
+        
+        $dql = "SELECT v FROM BackendCoreBundle:Vols v WHERE ";
+        $dql .= "v.aeroportDepart=" . $depart_id;
+        $dql .= " AND ";
+        $dql .= "v.aeroportArrivee=" . $arrivee_id;
+        $dql .= " AND ";
+        $dql .= "v.dateDepart='" . $date->format('Y-m-d') . "'";
+        
+        $query = $this->em()->createQuery($dql);
+        $vols = $query->getResult();
+        
+        if (!empty($vols))
+            $this->set('vols', $vols[0]);
+        else
+            $this->set('vols', $date->format('d/m/Y'));
+        
+        return $this->view($tpl);
+    }
+    
     private function buildListPassagers($search_request) {
         $list[] = array('type' => 'adults', 'number' => $search_request->getAdults());
         $list[] = array('type' => 'children', 'number' => $search_request->getChildren());

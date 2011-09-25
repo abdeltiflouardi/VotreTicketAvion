@@ -6,6 +6,10 @@ FrontendWebBundle_search_result:
     pattern:  /results
     defaults: { _controller: FrontendWebBundle:Search:results }
 
+FrontendWebBundle_search_result_ajax:
+    pattern:  /results/ajax
+    defaults: { _controller: FrontendWebBundle:Search:resultsAjax }
+
 FrontendWebBundle_client_subscribe:
   pattern:  /subscribe
   defaults: { _controller: FrontendWebBundle:Client:subscribe }
