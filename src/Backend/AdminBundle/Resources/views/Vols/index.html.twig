@@ -8,6 +8,8 @@
     <thead>
         <tr>
             <th>{{ pager_sort('Id', 'v.id')|raw }}</th>
+            <th>AeroportDepart</th>
+            <th>AeroportArrivee</th>            
             <th>{{ pager_sort('Datedepart', 'v.dateDepart')|raw }}</th>
             <th>{{ pager_sort('Datearive', 'v.dateArive')|raw }}</th>
             <th>{{ pager_sort('Heuredepart', 'v.heureDepart')|raw }}</th>
@@ -20,6 +22,8 @@
     {% for entity in pager %}
         <tr>
             <td><a href="{{ path('vols_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td>{{ entity.aeroportDepart }}</td>
+            <td>{{ entity.aeroportArrivee }}</td>            
             <td>{{ entity.dateDepart|date('Y-m-d') }}</td>
             <td>{{ entity.dateArive|date('Y-m-d') }}</td>
             <td>{{ entity.heureDepart|date('H:i:s') }}</td>

@@ -3,6 +3,7 @@
 namespace Backend\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Backend\CoreBundle\Entity\Tarif
@@ -86,7 +87,7 @@ class Tarif
 
     /**
      * @var Vols
-     *
+     * 
      * @ORM\ManyToOne(targetEntity="Vols")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="vols_id", referencedColumnName="id")

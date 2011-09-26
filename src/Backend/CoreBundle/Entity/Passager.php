@@ -198,4 +198,8 @@ class Passager
     {
         return $this->reservation;
     }
+    
+    public function __toString() {
+        return $this->getNom() . ' ' . $this->getPrenom();
+    }
 }

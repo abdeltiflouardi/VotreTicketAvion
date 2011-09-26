@@ -8,6 +8,9 @@
     <thead>
         <tr>
             <th>{{ pager_sort('Id', 'r.id')|raw }}</th>
+            <th>{#{ pager_sort('', 'v.')|raw }#}Vols (depart)</th>
+            <th>{#{ pager_sort('', 'v.')|raw }#}Vols (arrivé)</th>
+            <th>{#{ pager_sort('', 'v.')|raw }#}Client</th>
             <th>{{ pager_sort('Date', 'r.date')|raw }}</th>
             <th>Actions</th>
         </tr>
@@ -16,6 +19,9 @@
     {% for entity in pager %}
         <tr>
             <td><a href="{{ path('reservation_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+            <td><a href="{{ path('vols_show', {'id': entity.vols.id}) }}">{{ entity.vols.aeroportDepart.aeroport }}</a></td>
+            <td><a href="{{ path('vols_show', {'id': entity.vols.id}) }}">{{ entity.vols.aeroportArrivee.aeroport }}</a></td>
+            <td><a href="{{ path('client_show', {'id': entity.client.id}) }}">{{ entity.client.nom|upper }} {{ entity.client.prenom|capitalize }}</a></td>
             <td>{{ entity.date|date('Y-m-d H:i:s') }}</td>
             <td>
                 <ul>

@@ -10,14 +10,14 @@ class VolsType extends AbstractType
     public function buildForm(FormBuilder $builder, array $options)
     {
         $builder
+            ->add('aeroportDepart')
+            ->add('aeroportArrivee')
             ->add('dateDepart')
             ->add('dateArive')
             ->add('heureDepart')
             ->add('heureArivee')
             ->add('active')
-            ->add('aeroportDepart')
-            ->add('aeroportArrivee')
-        ;
+                ;
     }
 
     public function getName()
