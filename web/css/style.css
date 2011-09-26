@@ -376,3 +376,12 @@ tr.th {
     float: right;
     margin-top: 10px;
 }
+
+.flash-success {
+    background-color: #DCF2DD;
+    border: 1px solid #C2D6C3;
+    color: #899E8A;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 50px;
+}

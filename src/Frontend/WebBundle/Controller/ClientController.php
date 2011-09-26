@@ -42,14 +42,15 @@ class ClientController extends Controller
                 $em->persist($reservation);
                 $em->flush();                
                 
-                $reservation_return = new Reservation();
-                $reservation_return->setClient($client);
-                $reservation_return->setDate(new \DateTime());
-                $reservation_return->setVols($this->findOne('BackendCoreBundle:Vols', $vols->getReturn()));               
+                if ($vols->getReturn()) {
+                    $reservation_return = new Reservation();
+                    $reservation_return->setClient($client);
+                    $reservation_return->setDate(new \DateTime());
+                    $reservation_return->setVols($this->findOne('BackendCoreBundle:Vols', $vols->getReturn()));               
 
-                $em->persist($reservation_return);
-                $em->flush();                 
-                
+                    $em->persist($reservation_return);
+                    $em->flush();                 
+                }
                 // Mapping posted data
                 $adults = $request->get('adults', array());
                 $children = $request->get('children', array());
@@ -80,12 +81,14 @@ class ClientController extends Controller
                     $em->persist($reservation);
                     $em->flush();
                     
-                    $reservation_return->addPassager($passager);
-                    $passager->addReservation($reservation_return);                    
-                    
-                    $em->persist($passager);          
-                    $em->persist($reservation_return);
-                    $em->flush();                    
+                    if ($vols->getReturn()) {
+                        $reservation_return->addPassager($passager);
+                        $passager->addReservation($reservation_return);                    
+
+                        $em->persist($passager);          
+                        $em->persist($reservation_return);
+                        $em->flush();  
+                    }
                 }               
  
                 

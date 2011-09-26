@@ -1,7 +1,6 @@
 {% extends "FrontendWebBundle::layout.html.twig" %}
 
 {% block content %}
-
 {% if app.session.hasFlash('success') %}
     <div class="flash-success">
         {{ app.session.flash('success') }}
