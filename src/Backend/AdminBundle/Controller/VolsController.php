@@ -150,7 +150,8 @@ class VolsController extends Controller
         }
 
         $tarifs = $entity->getTarifs();
-        if (!empty($tarifs))
+        
+        if (!empty($tarifs[0]))
             $tarif = $tarifs[0];
         else
             $tarif = new Tarif();        

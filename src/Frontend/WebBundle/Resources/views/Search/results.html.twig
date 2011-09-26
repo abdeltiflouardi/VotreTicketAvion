@@ -84,32 +84,39 @@
     <script src="{{ asset("js/jquery-ui-1.8.16.custom.min.js") }}"></script>
 
     <script>
+        function toInt(str) {
+            if (str == '') 
+                str = 0;
+            
+            return parseInt(str);
+        }
+        
         function printVolsPrice() {
             // Print total price
-            price_adults = parseInt($('.vols-details').find('.adults-price').text());
-            price_adults_return = parseInt($('.vols-return-details').find('.adults-price').text());
-            number_adults = parseInt($('.number-adults').text());
+            price_adults = toInt($('.vols-details').find('.adults-price').text());
+            price_adults_return = toInt($('.vols-return-details').find('.adults-price').text());
+            number_adults = toInt($('.number-adults').text());
             
-            price_children = parseInt($('.vols-details').find('.children-price').text());
-            price_children_return = parseInt($('.vols-return-details').find('.children-price').text());
-            number_children = parseInt($('.number-children').text());
+            price_children = toInt($('.vols-details').find('.children-price').text());
+            price_children_return = toInt($('.vols-return-details').find('.children-price').text());
+            number_children = toInt($('.number-children').text());
             
-            price_babies = parseInt($('.vols-details').find('.babies-price').text());
-            price_babies_return = parseInt($('.vols-return-details').find('.babies-price').text());
-            number_babies = parseInt($('.number-babies').text());
-            
+            price_babies = toInt($('.vols-details').find('.babies-price').text());
+            price_babies_return = toInt($('.vols-return-details').find('.babies-price').text());
+            number_babies = toInt($('.number-babies').text());
+
             $('.price-adults').html(price_adults_return + price_adults);
             $('.price-children').html(price_children_return + price_children);
-            $('.price-babies').html(price_babies_return + price_babies_return);
+            $('.price-babies').html(price_babies_return + price_babies);
             
             $('.total-adults').html((price_adults_return + price_adults)*number_adults);
             $('.total-children').html((price_children_return + price_children)*number_children);
-            $('.total-babies').html((price_babies_return + price_babies_return)*number_babies);
+            $('.total-babies').html((price_babies_return + price_babies)*number_babies);
             
             $('.total').html(
                 (price_adults_return + price_adults)*number_adults + 
                 (price_children_return + price_children)*number_children + 
-                (price_babies_return + price_babies_return)*number_babies
+                (price_babies_return + price_babies)*number_babies
             );            
         }
         
